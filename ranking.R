@@ -35,9 +35,9 @@
 ##                
 ##
 ## Author:     Hartmut Pohlheim (Carlos Fonseca)
-## History:    01.03.94     non-linear ranking
-##             10.03.94     multiple populations
-##             21.01.03     updated for MATLAB v6 by Alex Shenfield
+##             David Zhao (Modified for R)
+##
+## Date: 13May2016
 
 ranking <- function(ObjV,
                     RFun=c(2,0),
