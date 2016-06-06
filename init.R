@@ -15,7 +15,8 @@ assign('pathIntrospection', function(){
 )
 .tempVars$loadpath = .tempVars$pathIntrospection()
 ####
-.tempVars$rfiles = list.files(.tempVars$loadpath, pattern = "[^init][.][Rr]$")
+.tempVars$templs = list.files(.tempVars$loadpath)
+.tempVars$rfiles = grep("(?<!init)[.][rR]",.tempVars$templs,perl = T,value = T)
 .tempVars$path2rfiles = sapply(.tempVars$rfiles,function(x){
   ifelse(.tempVars$loadpath!='',file.path(.tempVars$loadpath,x),x)})
 
@@ -23,6 +24,6 @@ sapply(.tempVars$path2rfiles,function(x)sys.source(x,.mpga))
 # compiled version of functions
 # .tempVars$funname = sub("[.][Rr]$","",.tempVars$rfiles)
 # m_ply(.tempVars$funname,function(x)assign(x,value = cmpfun(get(x,envir = .garf)),envir= .garf))
-attach(.mpga,pos=1,warn.conflicts=FALSE)
+attach(.mpga,pos=2,warn.conflicts=FALSE)
 rm(.tempVars)
 
