@@ -1,44 +1,41 @@
-## REINS.M        (RE-INSertion of offspring in population replacing parents)
-##
-## This function reinserts offspring in the population.
-##
-## Syntax: [Chrom, ObjVCh] = reins(Chrom, SelCh, SUBPOP, InsOpt, ObjVCh, ObjVSel)
-##
-## Input parameters:
-##    Chrom     - Matrix containing the individuals (parents) of the current
-##                population. Each row corresponds to one individual.
-##    SelCh     - Matrix containing the offspring of the current
-##                population. Each row corresponds to one individual.
-##    SUBPOP    - (optional) Number of subpopulations
-##                if omitted or NaN, 1 subpopulation is assumed
-##    InsOpt    - (optional) Vector containing the insertion method parameters
-##                ExOpt(1): Select - number indicating kind of insertion
-##                          0 - uniform insertion
-##                          1 - fitness-based insertion
-##                          if omitted or NaN, 0 is assumed
-##                ExOpt(2): INSR - Rate of offspring to be inserted per
-##                          subpopulation (% of subpopulation)
-##                          if omitted or NaN, 1.0 (100%) is assumed
-##    ObjVCh    - (optional) Column vector containing the objective values
-##                of the individuals (parents - Chrom) in the current 
-##                population, needed for fitness-based insertion
-##                saves recalculation of objective values for population
-##    ObjVSel   - (optional) Column vector containing the objective values
-##                of the offspring (SelCh) in the current population, needed for
-##                partial insertion of offspring,
-##                saves recalculation of objective values for population
-##
-## Output parameters:
-##    Chrom     - Matrix containing the individuals of the current
-##                population after reinsertion.
-##    ObjVCh    - if ObjVCh and ObjVSel are input parameters, then column 
-##                vector containing the objective values of the individuals
-##                of the current generation after reinsertion.
-##           
-## Author:     Hartmut Pohlheim
-## History:    10.03.94     file created
-##             19.03.94     parameter checking improved
-##             26.01.03     tested under MATLAB v6 by Alex Shenfield
+#' @title RE-INSertion of offspring in population replacing parents
+#'
+#' @description
+#' This function reinserts offspring in the population.
+#'
+#' @usage
+#' reins(Chrom,SelCh,SUBPOP=1,InsOpt=c(0,1),ObjVCh=NULL,ObjVSel=NULL)
+#'
+#' @param Chrom matrix containing the individuals (parents) of the current
+#' population. Each row corresponds to one individual.
+#' @param SelCh matrix containing the offspring of the current
+#' population. Each row corresponds to one individual.
+#' @param SUBPOP an optional number indicating subpopulations
+#' 1 subpopulation is as default.
+#' @param InsOpt  an optional vector containing the insertion method parameters
+#' InsOpt[1] number indicating kind of insertion. 0 - uniform insertion and
+#' 1 - fitness-based insertion. if omitted, 0 is assumed.
+#' InsOpt[2] rate of offspring to be inserted per subpopulation (% of subpopulation)
+#' if omitted, 1.0 (100%) is assumed
+#' @param ObjVCh  an optional vector containing the objective values
+#' of the individuals (parents - Chrom) in the current 
+#' population, needed for fitness-based insertion
+#' saves recalculation of objective values for population
+#' @param ObjVSel an optional vector containing the objective values
+#' of the offspring (SelCh) in the current population, needed for
+#' partial insertion of offspring,
+#' saves recalculation of objective values for population
+#'
+#' @return a list containing following components:
+#' \item{Chrom}{matrix containing the individuals of the current
+#'  population after reinsertion.}
+#' \item{ObjVCh}{if ObjVCh and ObjVSel are input parameters, then column 
+#'  vector containing the objective values of the individuals
+#'  of the current generation after reinsertion.}
+#' @author 
+#' The original matlab implementation of bs2rv was written by Hartmut Pohlheim and 
+#' tested by Alex Shenfield. 
+#' The R implementation was written by David Zhao.       
 
 reins <- function(Chrom,
                   SelCh,
