@@ -16,13 +16,12 @@
 #' representation. Leftmost bits are MSb and
 #' rightmost are LSb.
 #' @param FieldD a list of additional options describing how to decode
-#' each substring in the chromosome. It has 7 elements with detail description
-#' as: 
-#' prec: a scalar describing the precision when converting chromosome to reals.
-#' lb & ub: Lower and upper bounds for each variable. 
-#' code: binary row vector indicating how each substring is to be decoded.
-#' scale: binary row vector indicating where to use arithmetic and/or logarithmic scaling.
-#' lbin & ubin: binary row vectors indicating whether or not to include each bound in the
+#' each substring in the chromosome. It has 7 elements,
+#' prec: a scalar describing the precision when converting chromosome to reals;
+#' lb, ub: Lower and upper bounds for each variable;
+#' code: binary row vector indicating how each substring is to be decoded;
+#' scale: binary row vector indicating where to use arithmetic and/or logarithmic scaling;
+#' lbin, ubin: binary row vectors indicating whether or not to include each bound in the
 #' representation range
 #' @return  real matrix containing the population phenotypes.
 #' @export
@@ -32,6 +31,7 @@
 #' The R implementation was written by David Zhao.
 #' @seealso \code{\link{crtbp}}
 #' @examples
+#' 
 #' @example examples/bs2rv.R
 
 bs2rv <- function(Chrom,

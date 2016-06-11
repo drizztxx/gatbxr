@@ -10,13 +10,13 @@
 #' population. Each row corresponds to one individual.
 #' @param SelCh matrix containing the offspring of the current
 #' population. Each row corresponds to one individual.
-#' @param SUBPOP an optional number indicating subpopulations
+#' @param SUBPOP an optional number indicating subpopulations.
 #' 1 subpopulation is as default.
-#' @param InsOpt  an optional vector containing the insertion method parameters
-#' InsOpt[1] number indicating kind of insertion. 0 - uniform insertion and
-#' 1 - fitness-based insertion. if omitted, 0 is assumed.
-#' InsOpt[2] rate of offspring to be inserted per subpopulation (% of subpopulation)
-#' if omitted, 1.0 (100%) is assumed
+#' @param InsOpt  an optional vector containing the insertion method parameters.
+#' InsOpt[1] number indicating kind of insertion. 0 stands for uniform insertion and
+#' 1 for fitness-based insertion. if omitted, 0 is assumed.
+#' InsOpt[2] rate of offspring to be inserted per subpopulation.
+#' if omitted, 1.0 is assumed
 #' @param ObjVCh  an optional vector containing the objective values
 #' of the individuals (parents - Chrom) in the current 
 #' population, needed for fitness-based insertion
@@ -29,11 +29,11 @@
 #' @return a list containing following components:
 #' \item{Chrom}{matrix containing the individuals of the current
 #'  population after reinsertion.}
-#' \item{ObjVCh}{if ObjVCh and ObjVSel are input parameters, then column 
+#' \item{ObjVCh}{if ObjVCh and ObjVSel are input parameters, then return 
 #'  vector containing the objective values of the individuals
 #'  of the current generation after reinsertion.}
 #' @author 
-#' The original matlab implementation of bs2rv was written by Hartmut Pohlheim and 
+#' The original matlab implementation of reins was written by Hartmut Pohlheim and 
 #' tested by Alex Shenfield. 
 #' The R implementation was written by David Zhao.       
 
