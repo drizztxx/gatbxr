@@ -2,11 +2,11 @@
 
 Under developing
 
-##Usage
+##Installation
 
-setwd('path of GA_R')
-
-source('init.R')
+###Github
+if( !require( devtools ) ) install.packages("devtools")
+devtools::install_github('drizztxx/gatbxr')
 
 ##[Origin](http://codem.group.shef.ac.uk/index.php/ga-toolbox/)
 
