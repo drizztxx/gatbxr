@@ -1,0 +1,14 @@
+Package: gatbxr
+Title: Gentic Algorithm Toolbox Implemented by R
+Version: 0.1
+Authors@R: person("David", "Zhao", email = "wethenwethen@gmail.com", role = c("aut", "cre"))
+Description: R version of genetic toolbox for implenmenting a wide
+    range of genetic algorithm methods. Originally it came from <http://
+    codem.group.shef.ac.uk/index.php/ga-toolbox/>.
+Depends:
+    R (>= 3.3.0),stats
+License: MIT
+URL: https://github.com/drizztxx/gatbxr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1

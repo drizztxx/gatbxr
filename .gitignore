@@ -48,7 +48,4 @@ Temporary Items
 .Rhistory
 .Rbuildignore
 *.Rproj*
-DESCRIPTION
-NAMESPACE
 init.R
-LICENSE.txt
