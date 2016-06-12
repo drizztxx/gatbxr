@@ -1,6 +1,7 @@
 ## SGA.M          (Simple Genetic Algorithm)
 ##
 ## This script implements the Simple Genetic Algorithm.
+## Test objective function is De Jong's first test funciton.
 ## Binary representation for the individuals is used.
 ##
 ## Author:     Hartmut Pohlheim
