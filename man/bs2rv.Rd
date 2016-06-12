@@ -16,10 +16,10 @@ rightmost are LSb.}
 
 \item{FieldD}{a list of additional options describing how to decode
 each substring in the chromosome. It has 7 elements,
-prec: a scalar describing the precision when converting chromosome to reals.
-lb, ub: Lower and upper bounds for each variable. 
-code: binary row vector indicating how each substring is to be decoded.
-scale: binary row vector indicating where to use arithmetic and/or logarithmic scaling.
+prec: a scalar describing the precision when converting chromosome to reals;
+lb, ub: Lower and upper bounds for each variable;
+code: binary row vector indicating how each substring is to be decoded;
+scale: binary row vector indicating where to use arithmetic and/or logarithmic scaling;
 lbin, ubin: binary row vectors indicating whether or not to include each bound in the
 representation range}
 }
@@ -37,10 +37,10 @@ either standard binary or Gray decoding.
 ## Create a chromsome 
 Chrom = crtbp(Nind = 40, Lind = 400)$Chrom
 
-## Converting to reals range from [-512, 512] with a precision of 20 (20 bits mean a real number) in 
-## arithmetic scale by binary decoding.
+## Converting to reals range from [-512, 512] with a precision of 20 
+##(20 bits mean a real number) in  arithmetic scale by binary decoding.
 Phen = bs2rv(Chrom = Chrom,
-             FieldD = list(prec=20,lb=-512,ub=512,code="binary",scale="arith",lbin=T,ubin=T))
+             FieldD = list(prec=20,lb=-512,ub=512,code="binary",scale="arith",lbin=TRUE,ubin=TRUE))
 }
 \author{
 The original matlab implementation of bs2rv was written by Carlos Fonseca and 

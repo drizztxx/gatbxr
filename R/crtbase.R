@@ -1,28 +1,30 @@
-## CRTBASE.R - Create base vector 
-##
-## This function creates a vector containing the base of the loci
-## in a chromosome.
-##
-## Syntax: BaseVec = crtbase(Lind, Base)
-##
-## Input Parameters:
-  ##
-##		Lind	- A scalar or vector containing the lengths
-##		    	  of the alleles.  Sum(Lind) is the length of
-##		    	  the corresponding chromosome.
-##
-##		Base	- A scalar or vector containing the base of
-##		    	  the loci contained in the Alleles.
-##
-## Output:
-  ##
-##		        A vector whose elements correspond to the base
-##		    	  of the loci of the associated chromosome structure.
-##
-## Author: Andrew Chipperfield
-##         David Zhao (Modified for R)
-##
-## Date: 25Apr2016
+#' @title Create base vector 
+#'
+#' @description
+#' This function creates a vector containing the base of the loci
+#' in a chromosome.
+#'
+#' @usage
+#' crtbase(Lind, Base=NULL)
+#'
+#' @param Lind	a number or vector containing the lengths
+#' of the alleles. Sum(Lind) is the length of
+#' the corresponding chromosome.
+#' @param Base a number or vector containing the base of
+#' the loci contained in the Alleles. Default is set to binary
+#' representation.
+#'
+#' @return
+#' a vector whose elements correspond to the base
+#' of the loci of the associated chromosome structure.
+#' @export
+#' @author 
+#' The original matlab implementation of mutate was written by Andrew Chipperfield.
+#' The R implementation was written by David Zhao. 
+#' @examples
+#' 
+#' Base = crtbase(10)
+
 crtbase <- function(Lind,
                     Base=NULL) {
   ##Check parameter consistency  

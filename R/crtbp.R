@@ -1,34 +1,32 @@
-## CRTBP.R - Create an initial population
-##
-## This function creates a binary population of given size and structure.
-##
-## Input Parameters:
-  ##
-##		Nind	- Either a scalar containing the number of individuals
-##	    		  in the new population or a row vector of length two
-##			      containing the number of individuals and their length.
-##
-##		Lind	- A scalar containing the length of the individual
-##   			  chromosomes.
-##
-##		Base	- A scalar containing the base of the chromosome 
-##			      elements or a row vector containing the base(s) 
-##   			  of the loci of the chromosomes.
-##
-## Output: A list containing following elements
-  ##
-##		Chrom	- A matrix containing the random valued chromosomes 
-##			      row wise.
-##
-##		Lind	- A scalar containing the length of the chromosome.
-##
-##		BaseV	- A row vector containing the base of the 
-##   			  chromosome loci.
-##
-## Author: Andrew Chipperfield
-##         David Zhao (Modified for R)
-##
-## Date: 25Apr2016
+#' @title Create an initial population
+#'
+#' @description
+#' This function creates a binary population of given size and structure.
+#'
+#' @param Nind	- either a number containing the number of individuals
+#' in the new population or a row vector of length two
+#' containing the number of individuals and their length.
+#' @param Lind	an optional number containing the length of the individual
+#' chromosomes.
+#' @param Base	an optional number containing the base of the chromosome 
+#' elements or a row vector containing the base(s) 
+#' of the loci of the chromosomes.
+#'
+#' @return
+#' a list containing following components:
+#' \item{Chrom}{a matrix containing the random valued chromosomes 
+#' row wise.}
+#' \item{Lind}{a scalar containing the length of the chromosome.}
+#' \item{BaseV}{a row vector containing the base of the 
+#' chromosome loci.}
+#' @export
+#' @author 
+#' The original matlab implementation of mutate was written by Andrew Chipperfield.
+#' The R implementation was written by David Zhao. 
+#' @examples
+#' 
+#' Chrom = crtbp(40,10)
+
 crtbp <- function(Nind,
                   Lind=NULL,
                   Base=NULL){

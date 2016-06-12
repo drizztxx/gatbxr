@@ -1,40 +1,40 @@
-## XOVMP.R                Multi-point crossover
-##
-## This function takes a matrix OldChrom containing the binary
-## representation of the individuals in the current population,
-## applies crossover to consecutive pairs of individuals with
-## probability Px and returns the resulting population.
-##
-## Npt indicates how many crossover points to use (1 or 2, zero
-## indicates shuffle crossover).
-## Rs indicates whether or not to force the production of
-## offspring different from their parents.
-##
-## Syntax: NewChrom =  xovmp(OldChrom, Px, Npt, Rs)
-## 
-## Input parameters:
-##   OldChrom  - Matrix containing the chromosomes of the old
-##               population. Each row corresponds to one individual
-##               (in binary form).
-##   Px        - Probability of recombination ocurring between pairs
-##               of individuals.
-##   Npt       - Scalar indicating the number of crossover points
-##               1: single point recombination
-##               2: double point recombination
-##               0: shuffle point recombination
-##   Rs        - reduced surrogate
-##               False: no reduced surrogate
-##               True : reduced surrogate
-## 
-## Output:
-##   NewChrom  - Matrix containing the offspring after mating, 
-##               ready to be mutated and/or evaluated, in the same 
-##               format as OldChrom.
-##
-## Author: Carlos Fonseca, 	Updated: Andrew Chipperfield
-##         David Zhao (Modified for R)
-##
-## Date: 13May2016
+#' @title Multi-point crossover
+#'
+#' @description
+#' This function takes a matrix OldChrom containing the binary
+#' representation of the individuals in the current population,
+#' applies crossover to consecutive pairs of individuals with
+#' defined probability and returns the resulting population.
+#'
+#' @usage
+#' xovmp(OldChrom,Px=0.7,Npt=0,Rs=TRUE)
+#' 
+#' @param OldChrom  a matrix containing the chromosomes of the old
+#' population. Each row corresponds to one individual.
+#' @param Px a number indicating the probability of recombination 
+#' ocurring between pairs of individuals. If omitted, 0.7 is set.
+#' @param Npt an optinal number indicating the number of crossover points to use.
+#' Specifically, 1 indicates single point recombination; 2 indicates 
+#' double point recombination; and 0 indicates shuffle point recombination.
+#' Default is set to 0.
+#' @param Rs  an optional logical value indicating whether or not to 
+#' force the production of offspring different from their parents.
+#' Default is set to TRUE.
+#' @return
+#' a matrix containing the offspring after mating, 
+#' ready to be mutated and/or evaluated, in the same 
+#' format as OldChrom.
+#' @export
+#' @author 
+#' The original matlab implementation of mutate was written by Carlos Fonseca and
+#' updated by Andrew Chipperfield.
+#' The R implementation was written by David Zhao. 
+#' @examples
+#' 
+#' Chrom = crtbp(40,10)$Chrom
+#' 
+#' Selch = xovmp(OldChrom=Chrom)
+
 
 xovmp <- function(OldChrom,
                   Px=0.7,

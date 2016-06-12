@@ -1,35 +1,34 @@
-## MUT.R
-##
-## This function takes the representation of the current population,
-## mutates each element with given probability and returns the resulting
-## population.
-##
-## Syntax:	NewChrom = mut(OldChrom,Pm,BaseV)
-##
-## Input parameters:
-##
-##		OldChrom - A matrix containing the chromosomes of the
-##			         current population. Each row corresponds to
-##			         an individuals string representation.
-##
-##		Pm	     - Mutation probability (scalar). Default value
-##			         of Pm = 0.7/Lind, where Lind is the chromosome
-##			         length is assumed if omitted.
-##
-##		BaseV	   - Optional row vector of the same length as the
-##			         chromosome structure defining the base of the 
-##			         individual elements of the chromosome. Binary
-##			         representation is assumed if omitted.
-##
-## Output:
-##
-##		           A Matrix containing a mutated version of
-##			         OldChrom.
-##
-## Author: Andrew Chipperfield
-##         David Zhao (Modified for R)
-##
-## Date: 13May2016
+#' @title MUTATion low-level function
+#'
+#' @description
+#' This function takes the representation of the current population,
+#' mutates each element with given probability and returns the resulting
+#' population.
+#'
+#' @usage 
+#' mut(OldChrom,Pm=NULL,BaseV=NULL)
+#'
+#' @param OldChrom a matrix containing the chromosomes of the
+#' current population. Each row corresponds to
+#' an individuals string representation.
+#' @param Pm a value indicating mutation probability. Default value
+#' of Pm = 0.7/Lind, where Lind is the chromosome length.
+#' @param BaseV	an optional vector of the same length as the
+#' chromosome structure defining the base of the 
+#' individual elements of the chromosome. Default is set to binary
+#' representation.
+#'
+#' @return
+#' a matrix containing a mutated version of OldChrom.
+#' @export
+#' @author 
+#' The original matlab implementation of mutate was written by Andrew Chipperfield.
+#' The R implementation was written by David Zhao. 
+#' @examples
+#' 
+#' Chrom = crtbp(40,10)$Chrom
+#' 
+#' NewChrom = mut(OldChrom=Chrom)
 
 mut <- function(OldChrom,
                 Pm=NULL,

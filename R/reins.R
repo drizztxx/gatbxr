@@ -32,6 +32,7 @@
 #' \item{ObjVCh}{if ObjVCh and ObjVSel are input parameters, then return 
 #'  vector containing the objective values of the individuals
 #'  of the current generation after reinsertion.}
+#' @export
 #' @author 
 #' The original matlab implementation of reins was written by Hartmut Pohlheim and 
 #' tested by Alex Shenfield. 

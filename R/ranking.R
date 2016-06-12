@@ -1,43 +1,48 @@
-## RANKING.R      (RANK-based fitness assignment)
-##
-## This function performs ranking of individuals.
-##
-## Syntax:  FitnV = ranking(ObjV, RFun, SUBPOP)
-##
-## This function ranks individuals represented by their associated
-## cost, to be *minimized*, and returns a column vector FitnV
-## containing the corresponding individual fitnesses. For multiple
-## subpopulations the ranking is performed separately for each
-## subpopulation.
-##
-## Input parameters:
-##    ObjV      - Vector containing the objective values of the
-##                individuals in the current population (cost values).
-##    RFun      - (optional) If RFun is a scalar in [1, 2] linear ranking is
-##                assumed and the scalar indicates the selective pressure.
-##                If RFun is a 2 element vector:
-##                RFun(1): SP - scalar indicating the selective pressure
-##                RFun(2): RM - ranking method
-##                         RM = 0: linear ranking
-##                         RM = 1: non-linear ranking
-##                If RFun is a vector with length(RFun) > 2 it contains
-##                the fitness to be assigned to each rank. It should have
-##                the same length as ObjV. Usually RFun is monotonously
-##                increasing.
-##                If RFun is omitted or NaN, linear ranking
-##                and a selective pressure of 2 are assumed.
-##    SUBPOP    - (optional) Number of subpopulations
-##                if omitted or NaN, 1 subpopulation is assumed
-##
-## Output parameters:
-##    FitnV     - Column vector containing the fitness values of the
-##                individuals in the current population.
-##                
-##
-## Author:     Hartmut Pohlheim (Carlos Fonseca)
-##             David Zhao (Modified for R)
-##
-## Date: 13May2016
+#' @title RANK-based fitness assignment
+#'
+#' @description
+#' This function ranks individuals represented by their associated
+#' cost, to be *minimized*, and returns a vector FitnV
+#' containing the corresponding individual fitnesses. For multiple
+#' subpopulations the ranking is performed separately for each
+#' subpopulation.
+#'
+#' @usage
+#' ranking(ObjV,RFun=c(2,0),SUBPOP=1)
+#'
+#' @param ObjV a vector containing the objective values of the
+#' individuals in the current population (cost values).
+#' @param RFun if set RFun to a number range in [1, 2], linear ranking is
+#' assumed and the value indicates the selective pressure.
+#' If RFun is set to a 2 elements vector, then
+#' RFun[1] indicates the selective pressure and
+#' RFun[2] indicates the ranking method, when RFun[2]
+#' = 0, linear ranking is used, when RFun[2] = 1, 
+#' non-linear ranking is used.
+#' If RFun is a vector with length(RFun) > 2, it will contain
+#' the fitness to be assigned to each rank. It should have
+#' the same length as ObjV. Usually RFun is monotonously
+#' increasing.
+#' If RFun is omitted, linear ranking
+#' and a selective pressure of 2 are assumed.
+#' @param SUBPOP an optional number indicating subpopulations.
+#' Default is set to 1 subpopulation.
+#'
+#' @return
+#' a vector containing the fitness values of the
+#' individuals in the current population.
+#' @export
+#' @author 
+#' The original matlab implementation of mutate was written by Hartmut Pohlheim and
+#' Carlos Fonseca.
+#' The R implementation was written by David Zhao. 
+#' @examples
+#' 
+#' Chrom = crtbp(40,10)$Chrom
+#' 
+#' #Ojbective function is the sum of individuals
+#' ObjV = apply(Chrom,1,sum)
+#' FitnV = ranking(ObjV)
 
 ranking <- function(ObjV,
                     RFun=c(2,0),

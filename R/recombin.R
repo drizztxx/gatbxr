@@ -1,34 +1,41 @@
-## RECOMBIN.R       (RECOMBINation high-level function)
-##
-## This function performs recombination between pairs of individuals
-## and returns the new individuals after mating. The function handles
-## multiple populations and calls the low-level recombination function
-## for the actual recombination process.
-##
-## Syntax:  NewChrom = recombin(REC_F, OldChrom, RecOpt, SUBPOP)
-##
-## Input parameters:
-##    REC_F     - String containing the name of the recombination or
-##                crossover function
-##                (NOTE : doesn't work with low level recmut)
-##    Chrom     - Matrix containing the chromosomes of the old
-##                population. Each line corresponds to one individual
-##    RecOpt    - (optional) Scalar containing the probability of 
-##                recombination/crossover occurring between pairs
-##                of individuals.
-##                if omitted or NaN, 0.7 is assumed
-##    SUBPOP    - (optional) Number of subpopulations
-##                if omitted or NaN, 1 subpopulation is assumed
-##    ...       - Ohter aurguments passed on to crossover function
-##
-## Output:
-##    NewChrom  - Matrix containing the chromosomes of the population
-##                after recombination in the same format as OldChrom.
-##
-##  Author:    Hartmut Pohlheim
-##             David Zhao (Modified for R)
-##
-## Date: 13May2016
+#' @title RECOMBINation high-level function
+#'
+#' @description
+#' This function performs recombination between pairs of individuals
+#' and returns the new individuals after mating. The function handles
+#' multiple populations and calls the low-level recombination function
+#' for the actual recombination process.
+#'
+#' @usage
+#' recombin(REC_F=c("xovmp","xovsp"),Chrom,RecOpt=0.7,SUBPOP=1,...)
+#'
+#' @param REC_F character string containing the name of the recombination or
+#' crossover function.
+#' @param Chrom a matrix containing the chromosomes of the old
+#' population. Each line corresponds to one individual
+#' @param RecOpt  an optional value containing the probability of 
+#' recombination/crossover occurring between pairs of individuals.
+#' Default is set to 0.7.
+#' @param SUBPOP  an optional number indicating subpopulations.
+#' Default is set to 1.
+#' @param ... ohter aurguments passed on to crossover function.
+#'
+#' @return 
+#' a matrix containing the chromosomes of the population
+#' after recombination in the same format as OldChrom.
+#' 
+#' @note
+#' This function doesn't work with low level recombination function \code{\link{recmut}}
+#' @export
+#' @author 
+#' The original matlab implementation of mutate was written by Hartmut Pohlheim.
+#' The R implementation was written by David Zhao. 
+#' 
+#' @examples
+#' 
+#' Selch = crtbp(40,10)$Chrom
+#' 
+#' NewChrom = recombin(REC_F="xovsp",Chrom=Selch)
 
 recombin <- function(REC_F=c("xovmp","xovsp"),
                      Chrom,

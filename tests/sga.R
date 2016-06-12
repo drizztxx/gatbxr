@@ -8,6 +8,8 @@
 ##             15.01.03     tested under MATLAB v6 by Alex Shenfield
 ##             06.06.16     Re-modified for R by David Zhao
 
+require("gatbxr")
+
 NIND = 40;           ## Number of individuals per subpopulations
 MAXGEN = 300;        ## max Number of generations
 GGAP = 0.9;          ## Generation gap, how many new individuals are created
@@ -30,7 +32,7 @@ objfun1 <- function(Chrom){
 
 ## Build fielddescription matrix
    PRECI = 20;    ## Precisicion of binary representation
-   FieldDD = list(prec=PRECI,lb=lb,ub=ub,code="gray",scale="arith",lbin=T,ubin=T);
+   FieldDD = list(prec=PRECI,lb=lb,ub=ub,code="gray",scale="arith",lbin=TRUE,ubin=TRUE);
 
 ## Create population
    Chrom = crtbp(NIND, NVAR*PRECI)$Chrom;

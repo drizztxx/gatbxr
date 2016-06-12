@@ -1,30 +1,38 @@
-## SELECT.R          (universal SELECTion)
-##
-## This function performs universal selection. The function handles
-## multiple populations and calls the low level selection function
-## for the actual selection process.
-##
-## Syntax:  SelCh = select(SEL_F, Chrom, FitnV, GGAP, SUBPOP)
-##
-## Input parameters:
-##    SEL_F     - Name of the selection function
-##    Chrom     - Matrix containing the individuals (parents) of the current
-##                population. Each row corresponds to one individual.
-##    FitnV     - Column vector containing the fitness values of the
-##                individuals in the population.
-##    GGAP      - (optional) Rate of individuals to be selected
-##                if omitted 1.0 is assumed
-##    SUBPOP    - (optional) Number of subpopulations
-##                if omitted 1 subpopulation is assumed
-##    ...       - Ohter aurguments passed on to selection function
-##
-## Output:
-##              - Matrix containing the selected individuals.
-##
-## Author:     Hartmut Pohlheim
-##             David Zhao (Modified for R)
-##
-## Date: 12May2016
+#' @title Universal selection high-level function
+#'
+#' @description
+#' This function performs universal selection. The function handles
+#' multiple populations and calls the low level selection function
+#' for the actual selection process.
+#'
+#' @usage
+#' select(SEL_F=c("sus","rws"),Chrom,FitnV,GGAP=1,SUBPOP=1,...)
+#'
+#' @param SEL_F character string indicating the selection function.
+#' @param Chrom a matrix containing the individuals (parents) of the current
+#' population. Each row corresponds to one individual.
+#' @param FitnV a vector containing the fitness values of the
+#' individuals in the population.
+#' @param GGAP  an optional number indicating rate of individuals to be selected.
+#' Default is set to 1.
+#' @param SUBPOP  an optional number indicating subpopulations.
+#' Default is set to 1 subpopulation.
+#' @param ... ohter aurguments passed on to selection function.
+#'
+#' @return 
+#' a matrix containing the selected individuals.
+#' @export
+#' @author 
+#' The original matlab implementation of mutate was written by Hartmut Pohlheim.
+#' The R implementation was written by David Zhao. 
+#' @examples
+#' 
+#' Chrom = crtbp(40,10)$Chrom
+#' 
+#' #Ojbective function is the sum of individuals
+#' FitnV = ranking(apply(Chrom,1,sum))
+#' 
+#' Selch = select(SEL_F="sus",Chrom=Chrom,FitnV=FitnV,GGAP=0.9)
 
 select <- function(SEL_F=c("sus","rws"),
                    Chrom,
