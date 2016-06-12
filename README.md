@@ -1,6 +1,8 @@
 #Gentic Algorithm Toolbox Implemented by R
 
-Under developing
+R version of genetic toolbox for implenmenting a wide range of genetic algorithm methods.
+
+Beta verison has been released and can be used in simple condition (simple genetic algorithm). However, lot's of operators remain to be done and tested.
 
 ##Installation
 
