@@ -3,6 +3,7 @@
 export(bs2rv)
 export(crtbase)
 export(crtbp)
+export(crtrp)
 export(mut)
 export(mutate)
 export(ranking)
