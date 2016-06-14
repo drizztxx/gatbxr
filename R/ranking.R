@@ -33,7 +33,7 @@
 #' individuals in the current population.
 #' @export
 #' @author 
-#' The original matlab implementation of mutate was written by Hartmut Pohlheim and
+#' The original matlab implementation of ranking was written by Hartmut Pohlheim and
 #' Carlos Fonseca.
 #' The R implementation was written by David Zhao. 
 #' @examples
@@ -47,7 +47,7 @@
 ranking <- function(ObjV,
                     RFun=c(2,0),
                     SUBPOP=1){
-  # ObjV = c(NaN,1:10,NaN,20:16);RFun=c(2,0);SUBPOP=1 ##Test
+  
   if(!is.vector(ObjV)) stop("Objv must be a vector")
   Nind <- NROW(ObjV)
   if(length(SUBPOP) != 1) stop("SUBPOP must be a scalar")

@@ -47,7 +47,7 @@ ObjV = apply(Chrom,1,sum)
 FitnV = ranking(ObjV)
 }
 \author{
-The original matlab implementation of mutate was written by Hartmut Pohlheim and
+The original matlab implementation of ranking was written by Hartmut Pohlheim and
 Carlos Fonseca.
 The R implementation was written by David Zhao.
 }
