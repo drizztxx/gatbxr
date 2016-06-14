@@ -60,14 +60,12 @@ rws <- function(FitnV, Nsel){
   cumfit <- cumsum(FitnV)
   trials <- cumfit[Nind] * runif(Nsel)
   NewChrIx <- rep(0,Nsel)
-  j = 1
-  for(i in 1:Nind){
-    repeat{
-      if (j > Nsel) break
-      if (trials[j] < cumfit[i]) {
-        NewChrIx[j] = i
-        j = j + 1
-      } else break
+  for(i in 1:Nsel){
+    for (j in 1:Nind){
+      if (trials[i] < cumfit[j]){
+        NewChrIx[i] <- j
+        break
+      }
     }
   }
   ## Shuffle new population
