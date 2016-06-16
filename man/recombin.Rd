@@ -4,7 +4,7 @@
 \alias{recombin}
 \title{RECOMBINation high-level function}
 \usage{
-recombin(REC_F=c("xovmp","xovsp"),Chrom,RecOpt=0.7,SUBPOP=1,...)
+recombin(REC_F, Chrom, RecOpt = 0.7, SUBPOP = 1, ...)
 }
 \arguments{
 \item{REC_F}{character string containing the name of the recombination or
@@ -42,7 +42,7 @@ Selch = crtbp(40,10)$Chrom
 NewChrom = recombin(REC_F="xovsp",Chrom=Selch)
 }
 \author{
-The original matlab implementation of mutate was written by Hartmut Pohlheim.
+The original matlab implementation of recombin was written by Hartmut Pohlheim.
 The R implementation was written by David Zhao.
 }
 

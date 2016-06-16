@@ -7,7 +7,7 @@
 #' for the actual recombination process.
 #'
 #' @usage
-#' recombin(REC_F=c("xovmp","xovsp"),Chrom,RecOpt=0.7,SUBPOP=1,...)
+#' recombin(REC_F, Chrom, RecOpt = 0.7, SUBPOP = 1, ...)
 #'
 #' @param REC_F character string containing the name of the recombination or
 #' crossover function.
@@ -28,7 +28,7 @@
 #' This function doesn't work with low level recombination function \code{\link{recmut}}
 #' @export
 #' @author 
-#' The original matlab implementation of mutate was written by Hartmut Pohlheim.
+#' The original matlab implementation of recombin was written by Hartmut Pohlheim.
 #' The R implementation was written by David Zhao. 
 #' 
 #' @examples
@@ -37,12 +37,13 @@
 #' 
 #' NewChrom = recombin(REC_F="xovsp",Chrom=Selch)
 
-recombin <- function(REC_F=c("xovmp","xovsp"),
+recombin <- function(REC_F,
                      Chrom,
                      RecOpt=0.7,
                      SUBPOP=1,
                      ...){
   ## Check parameter consistency
+  if (!is.function(get(REC_F))) stop("REC_F must be a string of function name")
   NindCh <- NROW(Chrom)
   Nvar <- NCOL(Chrom)
   

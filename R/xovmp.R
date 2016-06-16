@@ -33,7 +33,7 @@
 #' @details
 #' \code{xovmp} is the general crossover function for binary representation and 
 #' can be called by all other crossover functions. When \code{xovmp} called by 
-#' \code{\link{recombin}}, high-level crossover function, its arguments can aslo
+#' \code{\link{recombin}}, high-level crossover function, its arguments can also
 #' be passed on to. With different combination of argumetents, it can be used identically
 #' to \code{xovsp}, \code{xovdp}, \code{xovsh}, \code{xovsprs}, \code{xovdprs} and 
 #' \code{xovshrs}. Althogh these replicatical use, other form of crossover funcions
