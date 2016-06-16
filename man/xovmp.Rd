@@ -2,10 +2,12 @@
 % Please edit documentation in R/xovmp.R
 \name{xovmp}
 \alias{xovmp}
+\alias{xovsp}
 \title{Crossover operators for binary representation}
 \usage{
-xovmp(OldChrom,Px=0.7,Npt=0,Rs=TRUE)
-xovsp(OldChrom,Px=0.7)
+xovmp(OldChrom, Px = 0.7, Npt = 0, Rs = TRUE)
+
+xovsp(OldChrom, Px = 0.7)
 }
 \arguments{
 \item{OldChrom}{a matrix containing the chromosomes of the old

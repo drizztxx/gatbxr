@@ -5,11 +5,10 @@
 #' representation of the individuals in the current population,
 #' applying crossover to consecutive pairs of individuals with
 #' defined probability and returns the resulting population.
-#' @aliases xovmp
+#' @aliases xovmp xovsp
 #'
 #' @usage
-#' xovmp(OldChrom,Px=0.7,Npt=0,Rs=TRUE)
-#' xovsp(OldChrom,Px=0.7)
+#' xovmp(OldChrom, Px = 0.7, Npt = 0, Rs = TRUE)
 #' 
 #' @param OldChrom  a matrix containing the chromosomes of the old
 #' population. Each row corresponds to one individual.
@@ -96,8 +95,8 @@ xovmp <- function(OldChrom,
   return(NewChrom)
 }
 
+#' @rdname xovmp
 #' @export
-#' @aliases xovsp
 xovsp <- function(OldChrom,
                   Px=0.7){
   ## call low level function with appropriate parameters
