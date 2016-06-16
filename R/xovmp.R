@@ -1,13 +1,15 @@
-#' @title Multi-point crossover
+#' @title Crossover operators for binary representation
 #'
 #' @description
-#' This function takes a matrix OldChrom containing the binary
+#' Taking a matrix OldChrom containing the binary
 #' representation of the individuals in the current population,
-#' applies crossover to consecutive pairs of individuals with
+#' applying crossover to consecutive pairs of individuals with
 #' defined probability and returns the resulting population.
+#' @aliases xovmp
 #'
 #' @usage
 #' xovmp(OldChrom,Px=0.7,Npt=0,Rs=TRUE)
+#' xovsp(OldChrom,Px=0.7)
 #' 
 #' @param OldChrom  a matrix containing the chromosomes of the old
 #' population. Each row corresponds to one individual.
@@ -91,5 +93,14 @@ xovmp <- function(OldChrom,
     NewChrom[odd,] <- do.call(rbind,lapply(1:Xops,function(i) NewChrom[odd[i],unshuff[i,]]))
     NewChrom[even,] <- do.call(rbind,lapply(1:Xops,function(i) NewChrom[even[i],unshuff[i,]]))
   } 
+  return(NewChrom)
+}
+
+#' @export
+#' @aliases xovsp
+xovsp <- function(OldChrom,
+                  Px=0.7){
+  ## call low level function with appropriate parameters
+  NewChrom <- xovmp(OldChrom,Px,1,TRUE)
   return(NewChrom)
 }

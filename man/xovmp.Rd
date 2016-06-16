@@ -2,9 +2,10 @@
 % Please edit documentation in R/xovmp.R
 \name{xovmp}
 \alias{xovmp}
-\title{Multi-point crossover}
+\title{Crossover operators for binary representation}
 \usage{
 xovmp(OldChrom,Px=0.7,Npt=0,Rs=TRUE)
+xovsp(OldChrom,Px=0.7)
 }
 \arguments{
 \item{OldChrom}{a matrix containing the chromosomes of the old
@@ -28,9 +29,9 @@ ready to be mutated and/or evaluated, in the same
 format as OldChrom.
 }
 \description{
-This function takes a matrix OldChrom containing the binary
+Taking a matrix OldChrom containing the binary
 representation of the individuals in the current population,
-applies crossover to consecutive pairs of individuals with
+applying crossover to consecutive pairs of individuals with
 defined probability and returns the resulting population.
 }
 \examples{
