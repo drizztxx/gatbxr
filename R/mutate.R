@@ -17,13 +17,15 @@
 #' @param FieldDR matrix describing the boundaries of each variable 
 #' (real-values) or defining the base of the variables of 
 #' each individual (discrete values). Optional for (binary) discrete values
-#' @param MutOpt  vector containing mutation rate and shrink value.
-#' MutOpt[1] is the number containing the mutation rate -
-#' probability for mutation of a variable.
-#' MutOpt[2] is the number for shrinking the
-#' mutation range in the range [0, 1], possibility to
-#' shrink the range of the mutation depending on,
-#' for instance actual generation.
+#' @param MutOpt  an optional vector containing mutation rate and shrink value:
+#' \enumerate{
+#'   \item MutOpt[1] a number containing the mutation rate in the range \eqn{[0, 1]}.
+#' By default this value is assumed to \eqn{1/Nvar}, where \eqn{Nvar} is the number 
+#' of variables per individual defined by \code{NCOL(FieldDR)}.
+#'   \item MutOpt[2] a number for shrinking the
+#' mutation range in the range \eqn{[0, 1]}. 
+#' By default this vaule is assumed to 1 (no shrinking).
+#' }
 #' @param SUBPOP an optional number of subpopulations.
 #' Default is set to 1.
 #' @param ... ohter aurguments passed on to mutation function.
@@ -55,7 +57,7 @@ mutate <- function(MUT_F=c("mut","mutbga"),
     IsDiscret = 1
   } else {
     mF <- NROW(FieldDR); nF <- NCOL(FieldDR)
-    if (nf != Nvar) stop("FieldDR and OldChrom disagree")
+    if (nF != Nvar) stop("FieldDR and OldChrom disagree")
     if (mF == 2) {
       IsDiscret = 0
     } else if (mF == 1){

@@ -16,13 +16,15 @@ population. Each line corresponds to one individual.}
 (real-values) or defining the base of the variables of 
 each individual (discrete values). Optional for (binary) discrete values}
 
-\item{MutOpt}{vector containing mutation rate and shrink value.
-MutOpt[1] is the number containing the mutation rate -
-probability for mutation of a variable.
-MutOpt[2] is the number for shrinking the
-mutation range in the range [0, 1], possibility to
-shrink the range of the mutation depending on,
-for instance actual generation.}
+\item{MutOpt}{an optional vector containing mutation rate and shrink value:
+\enumerate{
+  \item MutOpt[1] a number containing the mutation rate in the range \eqn{[0, 1]}.
+By default this value is assumed to \eqn{1/Nvar}, where \eqn{Nvar} is the number 
+of variables per individual defined by \code{NCOL(FieldDR)}.
+  \item MutOpt[2] a number for shrinking the
+mutation range in the range \eqn{[0, 1]}. 
+By default this vaule is assumed to 1 (no shrinking).
+}}
 
 \item{SUBPOP}{an optional number of subpopulations.
 Default is set to 1.}
