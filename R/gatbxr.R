@@ -56,7 +56,7 @@
 #'  \item{\code{\link{bs2rv}}} binary string to real-value conversion
 #' }
 #' @examples
-#' ##
+#' ## Simple Genetic Algorithm
 #' @example examples/sga.R
 #' @name gatbxr-package
 #' @aliases gatbxr
