@@ -47,7 +47,7 @@
 ranking <- function(ObjV,
                     RFun=c(2,0),
                     SUBPOP=1){
-  
+
   if(!is.vector(ObjV)) stop("Objv must be a vector")
   Nind <- NROW(ObjV)
   if(length(SUBPOP) != 1) stop("SUBPOP must be a scalar")
@@ -81,7 +81,7 @@ ranking <- function(ObjV,
   for(ix in 1:SUBPOP){
     ObjVSub <- ObjV[((ix-1)*Nind+1):(ix*Nind)]
     Prss <- Prss[1:Nind]
-    FitnVSub <- Prss[rank(-rank(ObjV))]
+    FitnVSub <- Prss[rank(-rank(ObjVSub))]
     FitnV <- c(FitnV,FitnVSub)
   }
   return(FitnV)

@@ -61,7 +61,7 @@
 #' The R implementation was written by David Zhao.  
 #' @examples
 #' ## create initial population
-#' Chrom = crtbp(50,10)
+#' Chrom = crtbp(50,10)$Chrom
 #' 
 #' ## calculate objective value with sum function
 #' objv = apply(Chrom,1,sum)
@@ -72,7 +72,7 @@
 #' ## chosse 20% of the individuals of one subpopulation and replaces
 #' ## these individuals with the fittest individuals from an adjacent
 #' ## subpopulation in a unidirectional ring structure
-#' res = migrate(Chrom,SUBPOP = 5, ObjV, Select = TURE, Structure = "ring")
+#' res = migrate(Chrom,SUBPOP = 5, ObjV, Select = TRUE, Structure = "ring")
 
 migrate <- function(Chrom, SUBPOP = 1, ObjV, MIGR = 0.2, Select = FALSE, 
                     Structure = c("net","neighbourhood","ring")){
@@ -136,20 +136,20 @@ migrate <- function(Chrom, SUBPOP = 1, ObjV, MIGR = 0.2, Select = FALSE,
       ## select individuals of neighbourhood subpopulations for ChromMig and ObjVMig
       popnum <- c(SUBPOP,1:SUBPOP,1)
       ins1 <- popnum[i]; ins2 <- popnum[i+2]
-      InsRows <- c(((ins1-1)*MigTeil+1):ins1*MigTeil,
-                   ((ins2-1)*MigTeil+1):ins2*MigTeil)
+      InsRows <- c(((ins1-1)*MigTeil+1):(ins1*MigTeil),
+                   ((ins2-1)*MigTeil+1):(ins2*MigTeil))
       ChromMig <- ChromMig[InsRows,]
       if (!missing(ObjV)) ObjVMig <- ObjVMig[InsRows]
     } else if (Structure == "ring"){
       ## select individuals of actual-1 subpopulation for ChromMig and ObjVMig
       popnum <- c(SUBPOP,1:SUBPOP,1)
       ins1 <- popnum[i]
-      InsRows <- ((ins1-1)*MigTeil+1):ins1*MigTeil
+      InsRows <- ((ins1-1)*MigTeil+1):(ins1*MigTeil)
       ChromMig <- ChromMig[InsRows,]
       if (!missing(ObjV)) ObjVMig <- ObjVMig[InsRows]    
     } else {
       ## delete individuals of actual subpopulation from ChromMig and ObjVMig
-      DelRows <- ((i-1)*MigTeil+1):i*MigTeil
+      DelRows <- ((i-1)*MigTeil+1):(i*MigTeil)
       ChromMig <- ChromMig[-DelRows,]
       if (!missing(ObjV)) ObjVMig <- ObjVMig[-DelRows]
     }
