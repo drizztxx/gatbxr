@@ -40,7 +40,7 @@ bounds, the second row the upper bounds.
 ## To create a random populatin of 6 individuals with 4 variables each:
 ## Define boundaries on the variables,
 FieldDR = matrix(c(-100,-50,-30,-20,
-                    100,50,30,20),2,4,byrow=T)
+                    100,50,30,20),2,4,byrow=TRUE)
 ## Create initial population
 Chrom = crtrp(6,FieldDR)                     
 }
