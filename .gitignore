@@ -46,6 +46,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 .Rhistory
-.Rbuildignore
 *.Rproj*
 init.R
+.Rbuildignore

@@ -7,7 +7,7 @@ Description: R version of genetic toolbox for implementing a wide
     codem.group.shef.ac.uk/index.php/ga-toolbox/>.
 Depends:
     R (>= 3.3.0),stats
-License: MIT
+License: MIT + file LICENSE
 URL: https://github.com/drizztxx/gatbxr
 Encoding: UTF-8
 LazyData: true
