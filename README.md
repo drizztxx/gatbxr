@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/drizztxx/gatbxr.svg?branch=master)](https://travis-ci.org/drizztxx/gatbxr)
+
 #Gentic Algorithm Toolbox Implemented by R
 
 R version of genetic toolbox for implementing a wide range of genetic algorithm methods.
