@@ -6,7 +6,7 @@
 #' @usage
 #' scaling(ObjV, Smul = 2, SUBPOP = 1)
 #' 
-#' @param Objv a vector containing the values of individuals fitness.
+#' @param ObjV a vector containing the values of individuals fitness.
 #' @param Smul an optional value used to determine the upper bound, 
 #' default is set to 2.
 #' @param SUBPOP an optional value indicating subpopulations.

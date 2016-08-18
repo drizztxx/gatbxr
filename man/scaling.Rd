@@ -7,13 +7,13 @@
 scaling(ObjV, Smul = 2, SUBPOP = 1)
 }
 \arguments{
+\item{ObjV}{a vector containing the values of individuals fitness.}
+
 \item{Smul}{an optional value used to determine the upper bound, 
 default is set to 2.}
 
 \item{SUBPOP}{an optional value indicating subpopulations.
 Default is set to 1 subpopulation.}
-
-\item{Objv}{a vector containing the values of individuals fitness.}
 }
 \value{
 a vector containing the individual fitnesses
