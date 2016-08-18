@@ -64,7 +64,7 @@ This function doesn't work with high level recombination function \code{\link{re
 }
 \examples{
 ## Initial a real-valued population
-FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=T) 
+FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=TRUE) 
 Chrom = crtrp(6,FieldDR)
 
 ## Perform line recombination with mutation

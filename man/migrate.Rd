@@ -73,7 +73,7 @@ migrate from a subpopulation to the same population.
 }
 \examples{
 ## create initial population
-Chrom = crtbp(50,10)
+Chrom = crtbp(50,10)$Chrom
 
 ## calculate objective value with sum function
 objv = apply(Chrom,1,sum)
@@ -84,7 +84,7 @@ ObjV = ranking(objv, SUBPOP = 5)
 ## chosse 20\% of the individuals of one subpopulation and replaces
 ## these individuals with the fittest individuals from an adjacent
 ## subpopulation in a unidirectional ring structure
-res = migrate(Chrom,SUBPOP = 5, ObjV, Select = TURE, Structure = "ring")
+res = migrate(Chrom,SUBPOP = 5, ObjV, Select = TRUE, Structure = "ring")
 }
 \author{
 The original matlab implementation of reins was written by Hartmut Pohlheim.

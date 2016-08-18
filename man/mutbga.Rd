@@ -54,11 +54,11 @@ than that of larger step sizes.
 }
 \examples{
 ## Initial a real-valued population
-FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=T) 
+FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=TRUE) 
 Chrom = crtrp(6,FieldDR)
 
 ## Perform mutation
-NewChrom = mutgba(Chrom,FieldDR)
+NewChrom = mutbga(Chrom,FieldDR)
 }
 \author{
 The original matlab implementation of crtrp was written by Hartmut Pohlheim. 

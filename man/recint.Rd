@@ -46,7 +46,7 @@ Intermediate recombination is similar to line recombination \code{\link{reclin}}
 }
 \examples{
 ## Initial a real-valued population
-FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=T) 
+FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=TRUE) 
 Chrom = crtrp(6,FieldDR)
 
 ## Perform intermeidate recombination
