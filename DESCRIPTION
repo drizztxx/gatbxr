@@ -1,5 +1,5 @@
 Package: gatbxr
-Title: Gentic Algorithm Toolbox Implemented by R
+Title: Genetic Algorithm Toolbox Implemented by R
 Version: 0.1
 Authors@R: person("David", "Zhao", email = "wethenwethen@gmail.com", role = c("aut", "cre"))
 Description: R version of genetic toolbox for implementing a wide
