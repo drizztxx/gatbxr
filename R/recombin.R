@@ -44,6 +44,7 @@ recombin <- function(REC_F,
                      ...){
   ## Check parameter consistency
   if (!is.function(get(REC_F))) stop("REC_F must be a string of function name")
+  if (REC_F == "recmut") stop("recumt cannot be called by this high level function, please use it directly")
   NindCh <- NROW(Chrom)
   Nvar <- NCOL(Chrom)
   
@@ -58,7 +59,9 @@ recombin <- function(REC_F,
   NewChrom <- NULL
   for(ix in 1:SUBPOP){
     ChromSub <- Chrom[((ix-1)*Nind+1):(ix*Nind),]
-    NewChromSub <- do.call(REC_F,list(ChromSub,RecOpt,...))
+    if (grepl("xov",REC_F)) {
+      NewChromSub <- do.call(REC_F,list(ChromSub,RecOpt,...))
+      } else NewChromSub <- do.call(REC_F,list(ChromSub,...))
     NewChrom <- rbind(NewChrom,NewChromSub)
   }
   
