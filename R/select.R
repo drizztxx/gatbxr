@@ -60,7 +60,7 @@ select <- function(SEL_F=c("sus","rws"),
   for(ix in 1:SUBPOP){
     FitnVSub <- FitnV[((ix-1)*Nind+1):(ix*Nind)]
     ChrIx <- do.call(SEL_F,list(FitnVSub,NSel,...)) + (ix-1)*Nind
-    SelChSub <- Chrom[ChrIx,]
+    SelChSub <- Chrom[ChrIx,,drop=F]
     SelCh <- rbind(SelCh,SelChSub)
   }
   
