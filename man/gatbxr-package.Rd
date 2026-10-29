@@ -4,88 +4,88 @@
 \name{gatbxr-package}
 \alias{gatbxr}
 \alias{gatbxr-package}
-\title{Gentic Algorithm Toolbox Implemented by R}
+\title{Genetic Algorithm Toolbox}
 \description{
-R version of genetic toolbox for implementing a wide range of genetic algorithm methods.
+A collection of genetic algorithm operators ported from the Genetic
+Algorithm Toolbox for 'MATLAB' developed at the Department of Automatic
+Control and Systems Engineering of The University of Sheffield, UK.
 }
 \details{
 To create populations:
-\itemize{
- \item{\code{\link{crtbase}}} Create a base vector
- \item{\code{\link{crtbp}}} Create arbitrary discrete random populations
- \item{\code{\link{crtrp}}} Create real-valued initial population
+\describe{
+ \item{\code{\link{crtbase}}}{Create a base vector}
+ \item{\code{\link{crtbp}}}{Create arbitrary discrete random populations}
+ \item{\code{\link{crtrp}}}{Create real-valued initial population}
 }
 
 Fitness assignment:
-\itemize{
- \item{\code{\link{ranking}}} Generalised rank-based fitness assignment
- \item{\code{\link{scaling}}} Proportional fitness scailing
+\describe{
+ \item{\code{\link{ranking}}}{Generalised rank-based fitness assignment}
+ \item{\code{\link{scaling}}}{Linear fitness scaling}
 }
 
 Selection functions:
-\itemize{
- \item{\code{\link{reins}}} Uniform random and fitness-based reinsertion
- \item{\code{\link{rws}}} Roulette wheel selection
- \item{\code{\link{select}}} High-level selection routine
- \item{\code{\link{sus}}} Stochastic universal sampling
+\describe{
+ \item{\code{\link{reins}}}{Uniform random and fitness-based reinsertion}
+ \item{\code{\link{rws}}}{Roulette wheel selection}
+ \item{\code{\link{select}}}{High-level selection routine}
+ \item{\code{\link{sus}}}{Stochastic universal sampling}
 }
 
 Mutation operators:
-\itemize{
- \item{\code{\link{mut}}} Discrete mutation
- \item{\code{\link{mutate}}} High-level mutation function
- \item{\code{\link{mutbga}}} Real-value mutation
+\describe{
+ \item{\code{\link{mut}}}{Discrete mutation}
+ \item{\code{\link{mutate}}}{High-level mutation function}
+ \item{\code{\link{mutbga}}}{Real-value mutation}
 }
 
 Crossover operators:
-\itemize{
- \item{\code{\link{recdis}}} Discrete recombination
- \item{\code{\link{recint}}} Intermediate recombination
- \item{\code{\link{reclin}}} Line recombination
- \item{\code{\link{recmut}}} Line recombination with mutation features
- \item{\code{\link{recombin}}} High-level recombination operator
- \item{\code{\link{xovdp}}} Double-point crossover
- \item{\code{\link{xovdprs}}} Double-point reduced surrogate crossover
- \item{\code{\link{xovmp}}} General multi-point crossover
- \item{\code{\link{xovsh}}} Shuffle crossover
- \item{\code{\link{xovshrs}}} Shuffle reduced surrogate crossover
- \item{\code{\link{xovsp}}} Single-point crossover
- \item{\code{\link{xovsprs}}} Single-point reduced surrogate crossover
+\describe{
+ \item{\code{\link{recdis}}}{Discrete recombination}
+ \item{\code{\link{recint}}}{Intermediate recombination}
+ \item{\code{\link{reclin}}}{Line recombination}
+ \item{\code{\link{recmut}}}{Line recombination with mutation features}
+ \item{\code{\link{recombin}}}{High-level recombination operator}
+ \item{\code{\link{xovdp}}}{Double-point crossover}
+ \item{\code{\link{xovdprs}}}{Double-point reduced surrogate crossover}
+ \item{\code{\link{xovmp}}}{General multi-point crossover}
+ \item{\code{\link{xovsh}}}{Shuffle crossover}
+ \item{\code{\link{xovshrs}}}{Shuffle reduced surrogate crossover}
+ \item{\code{\link{xovsp}}}{Single-point crossover}
+ \item{\code{\link{xovsprs}}}{Single-point reduced surrogate crossover}
 }
 
 Subpopulation support:
-\itemize{
- \item{\code{\link{migrate}}} exchange individuals between subpopulations
+\describe{
+ \item{\code{\link{migrate}}}{Exchange individuals between subpopulations}
 }
 
 Utility functions:
-\itemize{
- \item{\code{\link{bs2rv}}} binary string to real-value conversion
+\describe{
+ \item{\code{\link{bs2rv}}}{Binary string to real-value conversion}
 }
 }
 \examples{
 ## Simple Genetic Algorithm
-## 
-## Test objective function is De Jong's first test funciton.
+##
+## Test objective function is De Jong's first test function.
 ## Binary representation for the individuals is used.
 ##
 ## Author:     Hartmut Pohlheim
 ## History:    23.03.94     file created
 ##             15.01.03     tested under MATLAB v6 by Alex Shenfield
-##             06.06.16     Re-modified for R by David Zhao
-
-require("gatbxr")
+##             06.06.16     Re-modified for R by Liang Zhao
 
 NIND = 40;           ## Number of individuals per subpopulations
-MAXGEN = 300;        ## max Number of generations
+MAXGEN = 100;        ## max Number of generations
 GGAP = 0.9;          ## Generation gap, how many new individuals are created
 SEL_F = 'sus';       ## Name of selection function
 XOV_F = 'xovsp';     ## Name of recombination function for individuals
 MUT_F = 'mut';       ## Name of mutation function for individuals
-OBJ_F = 'objfun1';   ## Name of function for objective values
 
-objfun1 <- function(Chrom){
-  res <- apply(Chrom * Chrom,1,sum)
+## Objective function: De Jong's first test function (sphere)
+objfun1 <- function(Phen){
+  res <- apply(Phen * Phen,1,sum)
   return(res)
 }
 
@@ -93,11 +93,11 @@ objfun1 <- function(Chrom){
    lb=-512;
    ub=512;
 
-## Number of variables of objective function, in OBJ_F defined
-   NVAR = 20;   
+## Number of variables of objective function
+   NVAR = 20;
 
-## Build fielddescription matrix
-   PRECI = 20;    ## Precisicion of binary representation
+## Build field description list
+   PRECI = 20;    ## Precision of binary representation
    FieldDD = list(prec=PRECI,lb=lb,ub=ub,code="gray",scale="arith",lbin=TRUE,ubin=TRUE);
 
 ## Create population
@@ -110,24 +110,24 @@ objfun1 <- function(Chrom){
 
 ## Iterate population
    while (gen < MAXGEN){
-     ## Calculate objective function for population
+     ## Record the best objective value of the population
      Best[gen+1] = min(ObjV);
-     
-     ## Fitness assignement to whole population
+
+     ## Fitness assignment to whole population
      FitnV = ranking(ObjV);
-     
+
      ## Select individuals from population
      SelCh = select(SEL_F, Chrom, FitnV, GGAP);
-     
+
      ## Recombine selected individuals (crossover)
      SelCh=recombin(XOV_F, SelCh);
-     
+
      ## Mutate offspring
      SelCh=mutate(MUT_F, SelCh);
-     
+
      ##Evaluate offspring, call objective function
      ObjVSel = objfun1(bs2rv(SelCh,FieldDD));
-     
+
      ## Insert offspring in population replacing parents
      rs = reins(Chrom, SelCh,1,c(1,1),ObjV,ObjVSel);
      Chrom = rs$Chrom;
@@ -135,9 +135,42 @@ objfun1 <- function(Chrom){
 
      gen = gen + 1;
    }
+
+## Best objective value found in each generation
+plot(Best, type = "l", xlab = "Generation", ylab = "Best objective value")
 ## End of script
 }
-\author{
-David Zhao \email{wethenwethen@gmail.com}
+\references{
+Chipperfield, A. J., Fleming, P. J., Pohlheim, H. and Fonseca, C. M. (1994)
+\emph{Genetic Algorithm Toolbox for Use with MATLAB: User's Guide}, Version 1.2.
+Department of Automatic Control and Systems Engineering, University of Sheffield.
+\url{https://github.com/UoS-CODeM/GA-Toolbox}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/drizztxx/gatbxr}
+  \item Report bugs at \url{https://github.com/drizztxx/gatbxr/issues}
 }
 
+}
+\author{
+\strong{Maintainer}: Liang Zhao \email{wethenwethen@gmail.com} (R implementation) [translator]
+
+Authors:
+\itemize{
+  \item Liang Zhao \email{wethenwethen@gmail.com} (R implementation) [translator]
+  \item Andrew Chipperfield (Author of the original 'MATLAB' toolbox) [copyright holder]
+  \item Peter Fleming (Author of the original 'MATLAB' toolbox) [copyright holder]
+  \item Hartmut Pohlheim (Author of the original 'MATLAB' toolbox) [copyright holder]
+  \item Carlos Fonseca (Author of the original 'MATLAB' toolbox) [copyright holder]
+}
+
+Other contributors:
+\itemize{
+  \item Alex Shenfield (Tested the original 'MATLAB' toolbox) [contributor]
+  \item The University of Sheffield (Copyright holder of the original 'MATLAB' toolbox) [copyright holder]
+}
+
+}
+\keyword{internal}

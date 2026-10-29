@@ -1,13 +1,44 @@
 Package: gatbxr
-Title: Genetic Algorithm Toolbox Implemented by R
-Version: 0.1
-Authors@R: person("David", "Zhao", email = "wethenwethen@gmail.com", role = c("aut", "cre"))
-Description: R version of genetic toolbox for implementing a wide
-    range of genetic algorithm methods. Originally it came from <http://codem.group.shef.ac.uk/index.php/ga-toolbox/>.
-Depends:
-    R (>= 3.3.0),stats
-License: MIT + file LICENSE
+Title: Port of the Sheffield Genetic Algorithm Toolbox for 'MATLAB'
+Version: 0.2.0
+Authors@R: c(
+    person("Liang", "Zhao", email = "wethenwethen@gmail.com",
+           role = c("aut", "cre", "trl"),
+           comment = "R implementation"),
+    person("Andrew", "Chipperfield", role = c("aut", "cph"),
+           comment = "Author of the original 'MATLAB' toolbox"),
+    person("Peter", "Fleming", role = c("aut", "cph"),
+           comment = "Author of the original 'MATLAB' toolbox"),
+    person("Hartmut", "Pohlheim", role = c("aut", "cph"),
+           comment = "Author of the original 'MATLAB' toolbox"),
+    person("Carlos", "Fonseca", role = c("aut", "cph"),
+           comment = "Author of the original 'MATLAB' toolbox"),
+    person("Alex", "Shenfield", role = "ctb",
+           comment = "Tested the original 'MATLAB' toolbox"),
+    person("The University of Sheffield", role = "cph",
+           comment = "Copyright holder of the original 'MATLAB' toolbox")
+    )
+Description: Provides the functions of the Genetic Algorithm Toolbox for
+    'MATLAB' developed at the University of Sheffield (Chipperfield et al.
+    1994, <https://github.com/UoS-CODeM/GA-Toolbox>), rewritten in R.
+    It includes operators for creating binary, integer and real-valued
+    populations, rank-based and linear fitness assignment, roulette wheel
+    and stochastic universal sampling selection, single-point, multi-point,
+    shuffle and reduced surrogate crossover, discrete, intermediate and line
+    recombination, discrete and breeder genetic algorithm mutation,
+    reinsertion of offspring, and migration between subpopulations.
+License: GPL (>= 2)
 URL: https://github.com/drizztxx/gatbxr
+BugReports: https://github.com/drizztxx/gatbxr/issues
+Depends:
+    R (>= 3.5.0)
+Imports:
+    stats
+Suggests:
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 5.0.1
+Language: en-GB
+Roxygen: list(markdown = FALSE)
+Config/roxygen2/version: 8.1.1

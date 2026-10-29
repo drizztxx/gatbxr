@@ -4,10 +4,10 @@
 \alias{crtrp}
 \title{Create a real-valued initial population}
 \usage{
-crtrp(Nind,FieldDR)
+crtrp(Nind, FieldDR)
 }
 \arguments{
-\item{Nind}{a value containing the number of individuals in the new 
+\item{Nind}{a value containing the number of individuals in the new
 population.}
 
 \item{FieldDR}{a matrix of 2 rows by number of variables describing the
@@ -21,7 +21,7 @@ new population of size \code{Nind} by number of variables.
 This function creates a population of given size of random real-values.
 }
 \details{
-The first step in a genetic algorithm is to create an initial population consisting of 
+The first step in a genetic algorithm is to create an initial population consisting of
 random individuals. \code{crtrp} produces a matrix, \code{Chrom}, containing uniformly
 distributed random values in its elements.
 
@@ -34,22 +34,21 @@ from \code{FieldDR} with \code{Nvar = NCOL(FieldDR)}.
 the boundaries of each variable of an individual. The first row contains the lower
 bounds, the second row the upper bounds.
 
-\code{FieldDR} is used in other functions \code{\link{mutate}}
+\code{FieldDR} is also used in other functions such as \code{\link{mutate}}.
 }
 \examples{
-## To create a random populatin of 6 individuals with 4 variables each:
+## To create a random population of 6 individuals with 4 variables each:
 ## Define boundaries on the variables,
 FieldDR = matrix(c(-100,-50,-30,-20,
                     100,50,30,20),2,4,byrow=TRUE)
 ## Create initial population
-Chrom = crtrp(6,FieldDR)                     
-}
-\author{
-The original matlab implementation of crtrp was written by Hartmut Pohlheim and 
-tested by Alex Shenfield. 
-The R implementation was written by David Zhao.
+Chrom = crtrp(6,FieldDR)
 }
 \seealso{
 \code{\link{mutbga}}, \code{\link{recdis}}, \code{\link{recint}}, \code{\link{reclin}}
 }
-
+\author{
+The original 'MATLAB' implementation of crtrp was written by Hartmut Pohlheim and
+tested by Alex Shenfield.
+The R implementation was written by Liang Zhao.
+}

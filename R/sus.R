@@ -1,14 +1,11 @@
 #' @title Stochastic Universal Sampling
 #'
 #' @description
-#' This function performs selection with STOCHASTIC UNIVERSAL SAMPLING.
-#'
-#' @usage
-#' sus(FitnV, Nsel)
+#' This function performs selection with stochastic universal sampling.
 #'
 #' @param FitnV a vector containing the fitness values of the
 #' individuals in the population.
-#' @param Nsel  a number indicating individuals to be selected
+#' @param Nsel  a number indicating how many individuals are to be selected.
 #'
 #' @return
 #' a vector containing the indexes of the selected
@@ -16,24 +13,24 @@
 #' The new population, ready for mating, can be obtained
 #' by calculating OldChrom[NewChrIx,].
 #' @export
-#' @author 
-#' The original matlab implementation of mutate was written by Hartmut Pohlheim and
+#' @author
+#' The original 'MATLAB' implementation of sus was written by Hartmut Pohlheim and
 #' Carlos Fonseca.
-#' The R implementation was written by David Zhao. 
+#' The R implementation was written by Liang Zhao.
 #' @examples
-#' 
+#'
 #' Chrom = crtbp(40,10)$Chrom
-#' 
-#' #Ojbective function is the sum of individuals
+#'
+#' ## Objective function is the sum of individuals
 #' FitnV = ranking(apply(Chrom,1,sum))
-#' 
+#'
 #' Selch = sus(FitnV=FitnV,Nsel=2)
 
 sus <- function(FitnV,
                 Nsel){
   ## Identify the population size (Nind)
   Nind <- NROW(FitnV)
-  
+
   ## Perform stochastic universal sampling
   cumfit <- cumsum(FitnV)
   trials <- cumfit[Nind]/Nsel * (runif(1) + 0:(Nsel-1))

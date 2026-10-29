@@ -1,14 +1,12 @@
-#' @title Universal selection high-level function
+#' @title Selection (high-level function)
 #'
 #' @description
 #' This function performs universal selection. The function handles
 #' multiple populations and calls the low level selection function
 #' for the actual selection process.
 #'
-#' @usage
-#' select(SEL_F=c("sus","rws"),Chrom,FitnV,GGAP=1,SUBPOP=1,...)
-#'
-#' @param SEL_F character string indicating the selection function.
+#' @param SEL_F character string containing the name of the low-level selection
+#' function, e.g. \code{"sus"} (default) or \code{"rws"}.
 #' @param Chrom a matrix containing the individuals (parents) of the current
 #' population. Each row corresponds to one individual.
 #' @param FitnV a vector containing the fitness values of the
@@ -17,24 +15,27 @@
 #' Default is set to 1.
 #' @param SUBPOP  an optional number indicating subpopulations.
 #' Default is set to 1 subpopulation.
-#' @param ... ohter aurguments passed on to selection function.
+#' @param ... other arguments passed on to the selection function.
 #'
-#' @return 
+#' @return
 #' a matrix containing the selected individuals.
+#' @note
+#' \code{select} has the same name as functions in other packages (for example
+#' \code{dplyr::select}); use \code{gatbxr::select} if another package masks it.
 #' @export
-#' @author 
-#' The original matlab implementation of mutate was written by Hartmut Pohlheim.
-#' The R implementation was written by David Zhao. 
+#' @author
+#' The original 'MATLAB' implementation of select was written by Hartmut Pohlheim.
+#' The R implementation was written by Liang Zhao.
+#' @seealso \code{\link{sus}}, \code{\link{rws}}, \code{\link{ranking}}
 #' @examples
-#' 
 #' Chrom = crtbp(40,10)$Chrom
-#' 
-#' #Ojbective function is the sum of individuals
+#'
+#' ## Objective function is the sum of individuals
 #' FitnV = ranking(apply(Chrom,1,sum))
-#' 
+#'
 #' Selch = select(SEL_F="sus",Chrom=Chrom,FitnV=FitnV,GGAP=0.9)
 
-select <- function(SEL_F=c("sus","rws"),
+select <- function(SEL_F="sus",
                    Chrom,
                    FitnV,
                    GGAP=1,
@@ -46,23 +47,23 @@ select <- function(SEL_F=c("sus","rws"),
   if(!is.vector(FitnV)) stop("FitnV must be a vector")
   NindF <- NROW(FitnV)
   if(NindCh != NindF) stop("Chrom and FitnV disagree")
-  
+
   if(length(SUBPOP) != 1) stop("SUBPOP must be a scalar")
   if(NindCh %% SUBPOP != 0) stop("Chrom and SUBPOP disagree")
   Nind = NindCh/SUBPOP ## Compute number of individuals per subpopulation
-  
+
   if(length(GGAP) != 1) stop("GGAP must be a scalar")
   if(GGAP < 0) stop("GGAP must be a scalar bigger than 0")
   NSel <- max(floor(Nind*GGAP+0.5),2) ## Compute number of new individuals (to select)
-  
+
   ## Select individuals from population
   SelCh <- NULL
   for(ix in 1:SUBPOP){
     FitnVSub <- FitnV[((ix-1)*Nind+1):(ix*Nind)]
     ChrIx <- do.call(SEL_F,list(FitnVSub,NSel,...)) + (ix-1)*Nind
-    SelChSub <- Chrom[ChrIx,,drop=F]
+    SelChSub <- Chrom[ChrIx,,drop=FALSE]
     SelCh <- rbind(SelCh,SelChSub)
   }
-  
+
   return(SelCh)
 }

@@ -20,10 +20,10 @@ This function performs discrete recombination between
 pairs of individuals and returns the new individuals after mating.
 }
 \details{
-\code{recdis} is a function applicable to both populations of real-value variables 
+\code{recdis} is a function applicable to both populations of real-value variables
 and binary or integer variables. The pairs are mated in order, odd row with the next even row.
-If the number of rows in the matrix \code{OldChrom} is odd the the last row is not 
-mated and added at the end of \code{NewChrom}. The population should therefore be organised 
+If the number of rows in the matrix \code{OldChrom} is odd then the last row is not
+mated and added at the end of \code{NewChrom}. The population should therefore be organised
 into contiguous pairs that require mating. This can be achieved by using the function
 \code{\link{ranking}} to assign a fitness level to each individual and a selection function
 (e.g. \code{\link{select}}) to select individuals with a probability related to their
@@ -31,26 +31,26 @@ fitness in the current population.
 }
 \section{Algorithm}{
 
-Descrete recombination exchanges variable valules between the individuals. For 
-each variable the parent who contributes its variable value to the offspring is 
+Discrete recombination exchanges variable values between the individuals. For
+each variable the parent who contributes its variable value to the offspring is
 chosen randomly with equal probability.
 \cr\cr
 Discrete recombination can generate the corners of the hypercube defined by the parents.
 }
+
 \examples{
 ## Initial a real-valued population
-FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=TRUE) 
+FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=TRUE)
 Chrom = crtrp(6,FieldDR)
 
 ## Perform discrete recombination
 NewChrom = recdis(Chrom)
 }
-\author{
-The original matlab implementation was written by Hartmut Pohlheim.
-The R implementation was written by David Zhao.
-}
 \seealso{
-\code{\link{recombin}}, \code{\link{recint}}, \code{\link{reclin}}, \code{\link{ranking}}, 
+\code{\link{recombin}}, \code{\link{recint}}, \code{\link{reclin}}, \code{\link{ranking}},
 \code{\link{sus}}, \code{\link{rws}}
 }
-
+\author{
+The original 'MATLAB' implementation was written by Hartmut Pohlheim.
+The R implementation was written by Liang Zhao.
+}

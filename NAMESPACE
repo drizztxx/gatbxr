@@ -26,4 +26,7 @@ export(xovsh)
 export(xovshrs)
 export(xovsp)
 export(xovsprs)
-importFrom("stats", "runif")
+importFrom(stats,
+  ave,
+  runif
+)

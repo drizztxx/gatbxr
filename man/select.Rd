@@ -2,12 +2,13 @@
 % Please edit documentation in R/select.R
 \name{select}
 \alias{select}
-\title{Universal selection high-level function}
+\title{Selection (high-level function)}
 \usage{
-select(SEL_F=c("sus","rws"),Chrom,FitnV,GGAP=1,SUBPOP=1,...)
+select(SEL_F = "sus", Chrom, FitnV, GGAP = 1, SUBPOP = 1, ...)
 }
 \arguments{
-\item{SEL_F}{character string indicating the selection function.}
+\item{SEL_F}{character string containing the name of the low-level selection
+function, e.g. \code{"sus"} (default) or \code{"rws"}.}
 
 \item{Chrom}{a matrix containing the individuals (parents) of the current
 population. Each row corresponds to one individual.}
@@ -21,7 +22,7 @@ Default is set to 1.}
 \item{SUBPOP}{an optional number indicating subpopulations.
 Default is set to 1 subpopulation.}
 
-\item{...}{ohter aurguments passed on to selection function.}
+\item{...}{other arguments passed on to the selection function.}
 }
 \value{
 a matrix containing the selected individuals.
@@ -31,17 +32,22 @@ This function performs universal selection. The function handles
 multiple populations and calls the low level selection function
 for the actual selection process.
 }
+\note{
+\code{select} has the same name as functions in other packages (for example
+\code{dplyr::select}); use \code{gatbxr::select} if another package masks it.
+}
 \examples{
-
 Chrom = crtbp(40,10)$Chrom
 
-#Ojbective function is the sum of individuals
+## Objective function is the sum of individuals
 FitnV = ranking(apply(Chrom,1,sum))
 
 Selch = select(SEL_F="sus",Chrom=Chrom,FitnV=FitnV,GGAP=0.9)
 }
-\author{
-The original matlab implementation of mutate was written by Hartmut Pohlheim.
-The R implementation was written by David Zhao.
+\seealso{
+\code{\link{sus}}, \code{\link{rws}}, \code{\link{ranking}}
 }
-
+\author{
+The original 'MATLAB' implementation of select was written by Hartmut Pohlheim.
+The R implementation was written by Liang Zhao.
+}

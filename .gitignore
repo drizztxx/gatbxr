@@ -48,4 +48,8 @@ Temporary Items
 .Rhistory
 *.Rproj*
 init.R
-.Rbuildignore
+
+# R package build artefacts
+*.tar.gz
+*.Rcheck/
+.Rproj.user/

@@ -10,17 +10,17 @@ recmut(OldChrom, FieldDR, MutOpt = NULL)
 \item{OldChrom}{matrix containing the chromosomes of the old
 population. Each line corresponds to one individual.}
 
-\item{FieldDR}{matrix describing the boundaries of each variable 
-(real-values) or defining the base of the variables of 
+\item{FieldDR}{matrix describing the boundaries of each variable
+(real-values) or defining the base of the variables of
 each individual (discrete values). Optional for (binary) discrete values}
 
-\item{MutOpt}{an optional vector containing mutation rate and shrink value:
+\item{MutOpt}{an optional vector containing recombination rate and shrink value:
 \enumerate{
   \item MutOpt[1] a number containing the recombination rate in the range \eqn{[0, 1]}.
 By default this value is set to 1.
   \item MutOpt[2] a number for shrinking the
-mutation range in the range \eqn{[0, 1]}. 
-By default this vaule is assumed to 1 (no shrinking).
+mutation range in the range \eqn{[0, 1]}.
+By default this value is assumed to be 1 (no shrinking).
 }}
 }
 \value{
@@ -33,27 +33,28 @@ This function performs line recombination with mutation features between
 pairs of individuals.
 }
 \details{
-\code{recmut} is a function only applicable to populations of real-value variables (
-and not binary or integer). The pairs are mated in order, odd row with the next even row.
-If the number of rows in the matrix \code{OldChrom} is odd the the last row is not 
-mated and added at the end of \code{NewChrom}. The population should therefore be organised 
+\code{recmut} is a function only applicable to populations of real-value variables
+(and not binary or integer). The pairs are mated in order, odd row with the next even row.
+If the number of rows in the matrix \code{OldChrom} is odd then the last row is not
+mated and added at the end of \code{NewChrom}. The population should therefore be organised
 into contiguous pairs that require mating. This can be achieved by using the function
 \code{\link{ranking}} to assign a fitness level to each individual and a selection function
 (e.g. \code{\link{select}}) to select individuals with a probability related to their
 fitness in the current population.
 \cr\cr
-The offsprings of a pair of two parents are computed as follows:\cr
-\eqn{offsping1 = parent1 + RecMx * range * Mutopt[2] * delta *Diff}\cr
-\eqn{offsping2 = parent2 + RecMx * range * Mutopt[2] * delta * -Diff}\cr
-where,\cr \eqn{MutMx} = 1 or -1 with probability \eqn{MutOpt[1]}, (- with 
-probability 0.9) else 0. \cr
+The offspring of a pair of two parents are computed as follows:\cr
+\eqn{offspring1 = parent1 + RecMx * range * MutOpt[2] * delta * Diff}\cr
+\eqn{offspring2 = parent2 + RecMx * range * MutOpt[2] * delta * -Diff}\cr
+where,\cr \eqn{RecMx} = 1 or -1 with probability \eqn{MutOpt[1]} (- with
+probability 0.9), else 0. \cr
 \eqn{range = 0.5 *} domain of variable (search interval defined
 by \code{FieldDR}). \cr
-\eqn{delta = sum(0 to m-1)pi*2^-i, pi = 1} wiht probability 
+\eqn{delta = sum(0 to m-1)pi*2^-i, pi = 1} with probability
 \eqn{1/m}, else 0, m = 20.\cr
-\eqn{Diff = (parent2 - parent1)/absolute(parent1 - parent2)}.
+\eqn{Diff = (parent2 - parent1)/|norm(parent2) - norm(parent1)|}.
+Pairs of parents with equal norms are not moved.
 \cr\cr
-The recombiantion operator \code{recmut} generates offspring in a direction defined by
+The recombination operator \code{recmut} generates offspring in a direction defined by
 the parents (line recombination). It tests more often outside the area defined by the
 parents and in the direction of parent1. The point for the offspring is defined by
 features of the mutation operator. The probability of small step sizes is greater than
@@ -64,17 +65,16 @@ This function doesn't work with high level recombination function \code{\link{re
 }
 \examples{
 ## Initial a real-valued population
-FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=TRUE) 
+FieldDR = matrix(c(-100,-50,-30,-20,100,50,30,20),2,4,byrow=TRUE)
 Chrom = crtrp(6,FieldDR)
 
 ## Perform line recombination with mutation
 NewChrom = recmut(Chrom,FieldDR)
 }
-\author{
-The original matlab implementation of crtrp was written by Hartmut Pohlheim. 
-The R implementation was written by David Zhao.
-}
 \seealso{
 \code{\link{mutate}}, \code{\link{mutbga}}, \code{\link{reclin}}
 }
-
+\author{
+The original 'MATLAB' implementation of recmut was written by Hartmut Pohlheim.
+The R implementation was written by Liang Zhao.
+}

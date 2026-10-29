@@ -4,8 +4,14 @@
 \alias{migrate}
 \title{Migration of individuals between subpopulations}
 \usage{
-migrate(Chrom, SUBPOP = 1, ObjV, MIGR = 0.2, Select = FALSE, 
-Structure = c("net","neighbourhood","ring"))
+migrate(
+  Chrom,
+  SUBPOP = 1,
+  ObjV,
+  MIGR = 0.2,
+  Select = FALSE,
+  Structure = c("net", "neighbourhood", "ring")
+)
 }
 \arguments{
 \item{Chrom}{a matrix containing the individuals of the current
@@ -14,51 +20,51 @@ population. Each row corresponds to one individual.}
 \item{SUBPOP}{an optional number indicating subpopulations.
 Default is set to 1 subpopulation.}
 
-\item{ObjV}{a vector containing the objective values of the
-individuals in the current population (cost values).}
+\item{ObjV}{an optional vector containing the objective values (cost values,
+to be minimized) of the individuals in the current population.}
 
-\item{MIGR}{a number indicating rate of individuals to be 
+\item{MIGR}{a number indicating rate of individuals to be
 migrated per subpopulation. Default is set to 0.2.}
 
-\item{Select}{an logical value indicating whether fitness-based selection
-will be used. Default is set to FALSE. If set to TRUE, then \code{ObjV} must also 
+\item{Select}{a logical value indicating whether fitness-based selection
+will be used. Default is set to FALSE. If set to TRUE, then \code{ObjV} must also
 be defined.}
 
-\item{Structure}{an character string indicating the name of structure of the subpopulations 
-for migration. The default structure "net" indicates net structure (unconstrained 
-migration).}
+\item{Structure}{a character string indicating the name of structure of the subpopulations
+for migration: one of \code{"net"} (default, unconstrained migration),
+\code{"neighbourhood"} or \code{"ring"}.}
 }
 \value{
 a list containing following components:
 \item{Chrom}{a matrix containing the individuals of the current
  population after reinsertion.}
-\item{ObjV}{if ObjV is input parameters, then return 
+\item{ObjV}{if \code{ObjV} is given, the
  vector containing the objective values of the individuals
- of the current generation after reinsertion. Else return NULL.}
+ of the current generation after migration; otherwise \code{NULL}.}
 }
 \description{
 This function performs migration of individuals.
 }
 \details{
-\pkg{gatbxr} provides support for multiple subpopulations through the use of 
+\pkg{gatbxr} provides support for multiple subpopulations through the use of
 high-level genetic operator functions and a routine for exchanging individuals
 between subpopulations. In the literature, the use of multiple populations has
 been shown, in most cases, to improve the quality of the results obtained using GAs
 compared to the single population GA.
 \cr\cr
-\pkg{gatbxr} supports the use of a single population divided into a number of 
-subpopulations or \eqn{demes} by modifying the use of data structures such that 
-subpopulations are stored in contiguous blocks wihtin a single matrix.
+\pkg{gatbxr} supports the use of a single population divided into a number of
+subpopulations or \eqn{demes} by modifying the use of data structures such that
+subpopulations are stored in contiguous blocks within a single matrix.
 \cr\cr
-This model enables each subpopulation evolved over generations by a traditional GA and 
-from time to time individuals migrate from one subpopulation to another. The amount of 
+In this model each subpopulation is evolved over generations by a traditional GA and
+from time to time individuals migrate from one subpopulation to another. The amount of
 migration of individuals and the pattern of that migration determines how much genetic
 diversity can occur.
 \cr\cr
 \code{migrate} implements the transfer of individuals between subpopulations, in which
-\code{Structure} specifies the population topology over which migration will tha place.
-The default structure unrestricted migration topology (\code{net}) is the most general 
-migration strategy. Here, individuals may migrate from any subpopulation to another. For each 
+\code{Structure} specifies the population topology over which migration will take place.
+The default unrestricted migration topology (\code{net}) is the most general
+migration strategy. Here, individuals may migrate from any subpopulation to another. For each
 subpopulation, a pool of potential immigrants is constructed from the other subpopulations.
 The individual migrants are then determined according to the appropriate selection
 strategy.
@@ -68,30 +74,26 @@ And \code{neighbourhood} is a similar strategy. Like the \code{ring} topology, m
 is made only between nearest neighbours, however, migration may occur in either direction
 between subpopulations. For each subpopulation, the possible immigrants are determined,
 according to the desired selection method, from the adjacent subpopulations and a final
-selection made from this pool of individuals. This ensures that individuals will not 
+selection made from this pool of individuals. This ensures that individuals will not
 migrate from a subpopulation to the same population.
 }
 \examples{
-## create initial population
+## create initial population of 5 subpopulations with 10 individuals each
 Chrom = crtbp(50,10)$Chrom
 
-## calculate objective value with sum function
-objv = apply(Chrom,1,sum)
+## calculate objective values (to be minimized) with sum function
+ObjV = apply(Chrom,1,sum)
 
-## assume there are 5 subpopulations, then perform ranking
-ObjV = ranking(objv, SUBPOP = 5)
-
-## chosse 20\% of the individuals of one subpopulation and replaces
+## choose 20\% of the individuals of one subpopulation and replace
 ## these individuals with the fittest individuals from an adjacent
 ## subpopulation in a unidirectional ring structure
-res = migrate(Chrom,SUBPOP = 5, ObjV, Select = TRUE, Structure = "ring")
-}
-\author{
-The original matlab implementation of reins was written by Hartmut Pohlheim.
-The R implementation was written by David Zhao.
+res = migrate(Chrom, SUBPOP = 5, ObjV, Select = TRUE, Structure = "ring")
 }
 \seealso{
 \code{\link{select}}, \code{\link{recombin}}, \code{\link{mutate}},
 \code{\link{reins}}
 }
-
+\author{
+The original 'MATLAB' implementation of migrate was written by Hartmut Pohlheim.
+The R implementation was written by Liang Zhao.
+}

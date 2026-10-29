@@ -4,27 +4,33 @@
 \alias{bs2rv}
 \title{Binary string to real vector}
 \usage{
-bs2rv(Chrom,FieldD=list(prec=numeric(),lb=numeric(),ub=numeric(),code=c("binary","gray"),
-  scale=c("arith","log"),lbin=T,ubin=T))
+bs2rv(Chrom, FieldD)
 }
 \arguments{
 \item{Chrom}{matrix containing the chromosomes of the current
-population. Each line corresponds to one
+population. Each row corresponds to one
 individual's concatenated binary string
-representation. Leftmost bits are MSb and
-rightmost are LSb.}
+representation. Leftmost bits are the most significant bits and
+rightmost are the least significant bits.}
 
-\item{FieldD}{a list of additional options describing how to decode
-each substring in the chromosome. It has 7 elements,
-prec: a scalar describing the precision when converting chromosome to reals;
-lb, ub: Lower and upper bounds for each variable;
-code: binary row vector indicating how each substring is to be decoded;
-scale: binary row vector indicating where to use arithmetic and/or logarithmic scaling;
-lbin, ubin: binary row vectors indicating whether or not to include each bound in the
-representation range}
+\item{FieldD}{a list describing how to decode each substring in the
+chromosome. It must contain the following 7 elements:
+\describe{
+  \item{\code{prec}}{a number giving the length (precision) of each substring;}
+  \item{\code{lb}, \code{ub}}{lower and upper bounds of each variable;}
+  \item{\code{code}}{\code{"binary"} or \code{"gray"}, indicating how each
+  substring is to be decoded;}
+  \item{\code{scale}}{\code{"arith"} or \code{"log"}, indicating whether to use
+  arithmetic or logarithmic scaling;}
+  \item{\code{lbin}, \code{ubin}}{logical values indicating whether or not to
+  include each bound in the representation range.}
+}
+Except for \code{prec}, each element may be a single value applied to all
+variables or a vector with one value per variable.}
 }
 \value{
-real matrix containing the population phenotypes.
+a real matrix containing the population phenotypes. Each row
+corresponds to one individual and each column to one variable.
 }
 \description{
 This function decodes binary chromosomes into vectors of reals. The
@@ -33,21 +39,25 @@ length, and decoded into real numbers in a specified interval using
 either standard binary or Gray decoding.
 }
 \examples{
-
-## Create a chromsome 
+## Create a population of 40 chromosomes of length 400
 Chrom = crtbp(Nind = 40, Lind = 400)$Chrom
 
-## Converting to reals range from [-512, 512] with a precision of 20 
-##(20 bits mean a real number) in  arithmetic scale by binary decoding.
+## Convert to reals in the range [-512, 512] with a precision of 20
+## (20 bits represent one real number) on an arithmetic scale by binary decoding.
 Phen = bs2rv(Chrom = Chrom,
              FieldD = list(prec=20,lb=-512,ub=512,code="binary",scale="arith",lbin=TRUE,ubin=TRUE))
-}
-\author{
-The original matlab implementation of bs2rv was written by Carlos Fonseca and 
-updated by Andrew Chipperfield. 
-The R implementation was written by David Zhao.
+
+## Two variables with different bounds, decoded with Gray code
+Chrom = crtbp(5, 16)$Chrom
+Phen = bs2rv(Chrom,
+             FieldD = list(prec=8,lb=c(-1,10),ub=c(1,100),code="gray",
+                           scale=c("arith","log"),lbin=TRUE,ubin=TRUE))
 }
 \seealso{
 \code{\link{crtbp}}
 }
-
+\author{
+The original 'MATLAB' implementation of bs2rv was written by Carlos Fonseca and
+updated by Andrew Chipperfield.
+The R implementation was written by Liang Zhao.
+}

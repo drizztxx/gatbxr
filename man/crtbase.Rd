@@ -4,11 +4,11 @@
 \alias{crtbase}
 \title{Create base vector}
 \usage{
-crtbase(Lind, Base=NULL)
+crtbase(Lind, Base = NULL)
 }
 \arguments{
 \item{Lind}{a number or vector containing the lengths
-of the alleles. Sum(Lind) is the length of
+of the alleles. \code{sum(Lind)} is the length of
 the corresponding chromosome.}
 
 \item{Base}{a number or vector containing the base of
@@ -24,11 +24,13 @@ This function creates a vector containing the base of the loci
 in a chromosome.
 }
 \examples{
-
+## 10 binary loci
 Base = crtbase(10)
+
+## 3 loci of base 8 followed by 2 loci of base 4
+Base = crtbase(c(3,2), c(8,4))
 }
 \author{
-The original matlab implementation of mutate was written by Andrew Chipperfield.
-The R implementation was written by David Zhao.
+The original 'MATLAB' implementation of crtbase was written by Andrew Chipperfield.
+The R implementation was written by Liang Zhao.
 }
-

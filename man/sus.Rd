@@ -10,7 +10,7 @@ sus(FitnV, Nsel)
 \item{FitnV}{a vector containing the fitness values of the
 individuals in the population.}
 
-\item{Nsel}{a number indicating individuals to be selected}
+\item{Nsel}{a number indicating how many individuals are to be selected.}
 }
 \value{
 a vector containing the indexes of the selected
@@ -19,20 +19,19 @@ The new population, ready for mating, can be obtained
 by calculating OldChrom[NewChrIx,].
 }
 \description{
-This function performs selection with STOCHASTIC UNIVERSAL SAMPLING.
+This function performs selection with stochastic universal sampling.
 }
 \examples{
 
 Chrom = crtbp(40,10)$Chrom
 
-#Ojbective function is the sum of individuals
+## Objective function is the sum of individuals
 FitnV = ranking(apply(Chrom,1,sum))
 
 Selch = sus(FitnV=FitnV,Nsel=2)
 }
 \author{
-The original matlab implementation of mutate was written by Hartmut Pohlheim and
+The original 'MATLAB' implementation of sus was written by Hartmut Pohlheim and
 Carlos Fonseca.
-The R implementation was written by David Zhao.
+The R implementation was written by Liang Zhao.
 }
-

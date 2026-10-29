@@ -1,65 +1,72 @@
-#' @title Gentic Algorithm Toolbox Implemented by R
+#' @title Genetic Algorithm Toolbox
 #' @description
-#' R version of genetic toolbox for implementing a wide range of genetic algorithm methods.
+#' A collection of genetic algorithm operators ported from the Genetic
+#' Algorithm Toolbox for 'MATLAB' developed at the Department of Automatic
+#' Control and Systems Engineering of The University of Sheffield, UK.
 #' @details
 #' To create populations:
-#' \itemize{
-#'  \item{\code{\link{crtbase}}} Create a base vector
-#'  \item{\code{\link{crtbp}}} Create arbitrary discrete random populations
-#'  \item{\code{\link{crtrp}}} Create real-valued initial population
+#' \describe{
+#'  \item{\code{\link{crtbase}}}{Create a base vector}
+#'  \item{\code{\link{crtbp}}}{Create arbitrary discrete random populations}
+#'  \item{\code{\link{crtrp}}}{Create real-valued initial population}
 #' }
-#' 
+#'
 #' Fitness assignment:
-#' \itemize{
-#'  \item{\code{\link{ranking}}} Generalised rank-based fitness assignment
-#'  \item{\code{\link{scaling}}} Proportional fitness scailing
+#' \describe{
+#'  \item{\code{\link{ranking}}}{Generalised rank-based fitness assignment}
+#'  \item{\code{\link{scaling}}}{Linear fitness scaling}
 #' }
-#' 
+#'
 #' Selection functions:
-#' \itemize{
-#'  \item{\code{\link{reins}}} Uniform random and fitness-based reinsertion
-#'  \item{\code{\link{rws}}} Roulette wheel selection
-#'  \item{\code{\link{select}}} High-level selection routine
-#'  \item{\code{\link{sus}}} Stochastic universal sampling
+#' \describe{
+#'  \item{\code{\link{reins}}}{Uniform random and fitness-based reinsertion}
+#'  \item{\code{\link{rws}}}{Roulette wheel selection}
+#'  \item{\code{\link{select}}}{High-level selection routine}
+#'  \item{\code{\link{sus}}}{Stochastic universal sampling}
 #' }
-#' 
+#'
 #' Mutation operators:
-#' \itemize{
-#'  \item{\code{\link{mut}}} Discrete mutation
-#'  \item{\code{\link{mutate}}} High-level mutation function
-#'  \item{\code{\link{mutbga}}} Real-value mutation
+#' \describe{
+#'  \item{\code{\link{mut}}}{Discrete mutation}
+#'  \item{\code{\link{mutate}}}{High-level mutation function}
+#'  \item{\code{\link{mutbga}}}{Real-value mutation}
 #' }
-#' 
+#'
 #' Crossover operators:
-#' \itemize{
-#'  \item{\code{\link{recdis}}} Discrete recombination
-#'  \item{\code{\link{recint}}} Intermediate recombination
-#'  \item{\code{\link{reclin}}} Line recombination
-#'  \item{\code{\link{recmut}}} Line recombination with mutation features
-#'  \item{\code{\link{recombin}}} High-level recombination operator
-#'  \item{\code{\link{xovdp}}} Double-point crossover
-#'  \item{\code{\link{xovdprs}}} Double-point reduced surrogate crossover
-#'  \item{\code{\link{xovmp}}} General multi-point crossover
-#'  \item{\code{\link{xovsh}}} Shuffle crossover
-#'  \item{\code{\link{xovshrs}}} Shuffle reduced surrogate crossover
-#'  \item{\code{\link{xovsp}}} Single-point crossover
-#'  \item{\code{\link{xovsprs}}} Single-point reduced surrogate crossover
+#' \describe{
+#'  \item{\code{\link{recdis}}}{Discrete recombination}
+#'  \item{\code{\link{recint}}}{Intermediate recombination}
+#'  \item{\code{\link{reclin}}}{Line recombination}
+#'  \item{\code{\link{recmut}}}{Line recombination with mutation features}
+#'  \item{\code{\link{recombin}}}{High-level recombination operator}
+#'  \item{\code{\link{xovdp}}}{Double-point crossover}
+#'  \item{\code{\link{xovdprs}}}{Double-point reduced surrogate crossover}
+#'  \item{\code{\link{xovmp}}}{General multi-point crossover}
+#'  \item{\code{\link{xovsh}}}{Shuffle crossover}
+#'  \item{\code{\link{xovshrs}}}{Shuffle reduced surrogate crossover}
+#'  \item{\code{\link{xovsp}}}{Single-point crossover}
+#'  \item{\code{\link{xovsprs}}}{Single-point reduced surrogate crossover}
 #' }
-#' 
+#'
 #' Subpopulation support:
-#' \itemize{
-#'  \item{\code{\link{migrate}}} exchange individuals between subpopulations
+#' \describe{
+#'  \item{\code{\link{migrate}}}{Exchange individuals between subpopulations}
 #' }
-#' 
+#'
 #' Utility functions:
-#' \itemize{
-#'  \item{\code{\link{bs2rv}}} binary string to real-value conversion
+#' \describe{
+#'  \item{\code{\link{bs2rv}}}{Binary string to real-value conversion}
 #' }
+#' @references
+#' Chipperfield, A. J., Fleming, P. J., Pohlheim, H. and Fonseca, C. M. (1994)
+#' \emph{Genetic Algorithm Toolbox for Use with MATLAB: User's Guide}, Version 1.2.
+#' Department of Automatic Control and Systems Engineering, University of Sheffield.
+#' \url{https://github.com/UoS-CODeM/GA-Toolbox}
 #' @examples
 #' ## Simple Genetic Algorithm
 #' @example examples/sga.R
-#' @name gatbxr-package
-#' @aliases gatbxr
-#' @author David Zhao \email{wethenwethen@gmail.com}
-#' @docType package
+#' @keywords internal
+"_PACKAGE"
+
+#' @importFrom stats runif ave
 NULL

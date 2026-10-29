@@ -7,34 +7,43 @@
 crtbp(Nind, Lind = NULL, Base = NULL)
 }
 \arguments{
-\item{Nind}{- either a number containing the number of individuals
-in the new population or a row vector of length two
+\item{Nind}{either a number containing the number of individuals
+in the new population or a vector of length two
 containing the number of individuals and their length.}
 
 \item{Lind}{an optional number containing the length of the individual
+chromosomes, or a vector containing the base of each locus of the
 chromosomes.}
 
-\item{Base}{an optional number containing the base of the chromosome 
-elements or a row vector containing the base(s) 
+\item{Base}{an optional number containing the base of the chromosome
+elements or a vector containing the base(s)
 of the loci of the chromosomes.}
 }
 \value{
 a list containing following components:
-\item{Chrom}{a matrix containing the random valued chromosomes 
+\item{Chrom}{a matrix containing the random valued chromosomes
 row wise.}
 \item{Lind}{a scalar containing the length of the chromosome.}
-\item{BaseV}{a row vector containing the base of the 
+\item{BaseV}{a vector containing the base of the
 chromosome loci.}
 }
 \description{
 This function creates a binary population of given size and structure.
 }
 \examples{
+## 40 individuals with 10 binary loci
+Chrom = crtbp(40,10)$Chrom
 
-Chrom = crtbp(40,10)
+## 6 individuals with 5 loci of base 8
+Chrom = crtbp(6,5,8)$Chrom
+
+## 6 individuals whose loci have bases 2, 4 and 8
+Chrom = crtbp(6,c(2,4,8))$Chrom
+}
+\seealso{
+\code{\link{crtbase}}, \code{\link{crtrp}}
 }
 \author{
-The original matlab implementation of mutate was written by Andrew Chipperfield.
-The R implementation was written by David Zhao.
+The original 'MATLAB' implementation of crtbp was written by Andrew Chipperfield.
+The R implementation was written by Liang Zhao.
 }
-

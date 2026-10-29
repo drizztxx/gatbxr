@@ -2,20 +2,20 @@
 % Please edit documentation in R/mut.R
 \name{mut}
 \alias{mut}
-\title{MUTATion low-level function}
+\title{Discrete mutation (low-level function)}
 \usage{
-mut(OldChrom,Pm=NULL,BaseV=NULL)
+mut(OldChrom, Pm = NULL, BaseV = NULL)
 }
 \arguments{
 \item{OldChrom}{a matrix containing the chromosomes of the
 current population. Each row corresponds to
-an individuals string representation.}
+an individual's string representation.}
 
 \item{Pm}{a value indicating mutation probability. Default value
-of Pm = 0.7/Lind, where Lind is the chromosome length.}
+is \code{Pm = 0.7/Lind}, where \code{Lind} is the chromosome length.}
 
 \item{BaseV}{an optional vector of the same length as the
-chromosome structure defining the base of the 
+chromosome structure defining the base of the
 individual elements of the chromosome. Default is set to binary
 representation.}
 }
@@ -28,13 +28,14 @@ mutates each element with given probability and returns the resulting
 population.
 }
 \examples{
-
 Chrom = crtbp(40,10)$Chrom
 
 NewChrom = mut(OldChrom=Chrom)
 }
-\author{
-The original matlab implementation of mutate was written by Andrew Chipperfield.
-The R implementation was written by David Zhao.
+\seealso{
+\code{\link{mutate}}, \code{\link{mutbga}}
 }
-
+\author{
+The original 'MATLAB' implementation of mut was written by Andrew Chipperfield.
+The R implementation was written by Liang Zhao.
+}

@@ -1,24 +1,22 @@
-## 
-## Test objective function is De Jong's first test funciton.
+##
+## Test objective function is De Jong's first test function.
 ## Binary representation for the individuals is used.
 ##
 ## Author:     Hartmut Pohlheim
 ## History:    23.03.94     file created
 ##             15.01.03     tested under MATLAB v6 by Alex Shenfield
-##             06.06.16     Re-modified for R by David Zhao
-
-require("gatbxr")
+##             06.06.16     Re-modified for R by Liang Zhao
 
 NIND = 40;           ## Number of individuals per subpopulations
-MAXGEN = 300;        ## max Number of generations
+MAXGEN = 100;        ## max Number of generations
 GGAP = 0.9;          ## Generation gap, how many new individuals are created
 SEL_F = 'sus';       ## Name of selection function
 XOV_F = 'xovsp';     ## Name of recombination function for individuals
 MUT_F = 'mut';       ## Name of mutation function for individuals
-OBJ_F = 'objfun1';   ## Name of function for objective values
 
-objfun1 <- function(Chrom){
-  res <- apply(Chrom * Chrom,1,sum)
+## Objective function: De Jong's first test function (sphere)
+objfun1 <- function(Phen){
+  res <- apply(Phen * Phen,1,sum)
   return(res)
 }
 
@@ -26,11 +24,11 @@ objfun1 <- function(Chrom){
    lb=-512;
    ub=512;
 
-## Number of variables of objective function, in OBJ_F defined
-   NVAR = 20;   
+## Number of variables of objective function
+   NVAR = 20;
 
-## Build fielddescription matrix
-   PRECI = 20;    ## Precisicion of binary representation
+## Build field description list
+   PRECI = 20;    ## Precision of binary representation
    FieldDD = list(prec=PRECI,lb=lb,ub=ub,code="gray",scale="arith",lbin=TRUE,ubin=TRUE);
 
 ## Create population
@@ -43,24 +41,24 @@ objfun1 <- function(Chrom){
 
 ## Iterate population
    while (gen < MAXGEN){
-     ## Calculate objective function for population
+     ## Record the best objective value of the population
      Best[gen+1] = min(ObjV);
-     
-     ## Fitness assignement to whole population
+
+     ## Fitness assignment to whole population
      FitnV = ranking(ObjV);
-     
+
      ## Select individuals from population
      SelCh = select(SEL_F, Chrom, FitnV, GGAP);
-     
+
      ## Recombine selected individuals (crossover)
      SelCh=recombin(XOV_F, SelCh);
-     
+
      ## Mutate offspring
      SelCh=mutate(MUT_F, SelCh);
-     
+
      ##Evaluate offspring, call objective function
      ObjVSel = objfun1(bs2rv(SelCh,FieldDD));
-     
+
      ## Insert offspring in population replacing parents
      rs = reins(Chrom, SelCh,1,c(1,1),ObjV,ObjVSel);
      Chrom = rs$Chrom;
@@ -68,4 +66,7 @@ objfun1 <- function(Chrom){
 
      gen = gen + 1;
    }
+
+## Best objective value found in each generation
+plot(Best, type = "l", xlab = "Generation", ylab = "Best objective value")
 ## End of script
