@@ -8,7 +8,10 @@ select(SEL_F = "sus", Chrom, FitnV, GGAP = 1, SUBPOP = 1, ...)
 }
 \arguments{
 \item{SEL_F}{character string containing the name of the low-level selection
-function, e.g. \code{"sus"} (default) or \code{"rws"}.}
+function, e.g. \code{"sus"} (default) or \code{"rws"}. The functions of this
+package are found even when it is not attached; any other name is looked up
+from the environment \code{select} is called from, so user-defined functions
+can be given as well.}
 
 \item{Chrom}{a matrix containing the individuals (parents) of the current
 population. Each row corresponds to one individual.}

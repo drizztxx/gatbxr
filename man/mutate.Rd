@@ -8,7 +8,10 @@ mutate(MUT_F = "mut", OldChrom, FieldDR = NULL, MutOpt = NULL, SUBPOP = 1, ...)
 }
 \arguments{
 \item{MUT_F}{character string containing the name of the low-level mutation
-function, e.g. \code{"mut"} (default) or \code{"mutbga"}.}
+function, e.g. \code{"mut"} (default) or \code{"mutbga"}. The functions of
+this package are found even when it is not attached; any other name is looked
+up from the environment \code{mutate} is called from, so user-defined
+functions can be given as well.}
 
 \item{OldChrom}{matrix containing the chromosomes of the old
 population. Each line corresponds to one individual.}

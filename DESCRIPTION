@@ -1,6 +1,6 @@
 Package: gatbxr
 Title: Port of the Sheffield Genetic Algorithm Toolbox for 'MATLAB'
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
     person("Liang", "Zhao", email = "wethenwethen@gmail.com",
            role = c("aut", "cre", "trl"),
@@ -19,8 +19,8 @@ Authors@R: c(
            comment = "Copyright holder of the original 'MATLAB' toolbox")
     )
 Description: Provides the functions of the Genetic Algorithm Toolbox for
-    'MATLAB' developed at the University of Sheffield (Chipperfield et al.
-    1994, <https://github.com/UoS-CODeM/GA-Toolbox>), rewritten in R.
+    'MATLAB' developed at the University of Sheffield and described in
+    Chipperfield et al. (1994) <https://github.com/UoS-CODeM/GA-Toolbox>.
     It includes operators for creating binary, integer and real-valued
     populations, rank-based and linear fitness assignment, roulette wheel
     and stochastic universal sampling selection, single-point, multi-point,

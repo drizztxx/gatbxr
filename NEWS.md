@@ -1,3 +1,19 @@
+# gatbxr 0.2.1
+
+## Bug fixes
+
+* `recombin()` could not find its own operators (e.g. `"xovsp"`) when gatbxr
+  was not attached, for example when called as `gatbxr::recombin()` from
+  another package. The function names given to `recombin()`, `select()` and
+  `mutate()` are now looked up in gatbxr first and then from the calling
+  environment, so user-defined operators no longer need to be defined in the
+  global environment.
+
+## Package metadata
+
+* The reference in the Description is now written as
+  `authors (year) <https:...>`, as requested by CRAN.
+
 # gatbxr 0.2.0
 
 ## Package metadata

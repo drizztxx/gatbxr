@@ -9,7 +9,10 @@
 #' mutation function for the actual mutation process.
 #'
 #' @param MUT_F character string containing the name of the low-level mutation
-#' function, e.g. \code{"mut"} (default) or \code{"mutbga"}.
+#' function, e.g. \code{"mut"} (default) or \code{"mutbga"}. The functions of
+#' this package are found even when it is not attached; any other name is looked
+#' up from the environment \code{mutate} is called from, so user-defined
+#' functions can be given as well.
 #' @param OldChrom  matrix containing the chromosomes of the old
 #' population. Each line corresponds to one individual.
 #' @param FieldDR matrix describing the boundaries of each variable
@@ -55,6 +58,8 @@ mutate <- function(MUT_F="mut",
                    MutOpt=NULL,
                    SUBPOP=1,
                    ...){
+  MutFun <- get_operator(MUT_F, "MUT_F", parent.frame())
+
   ## Identify the population size (Nind) and the number of variables (Nvar)
   Nind <- NROW(OldChrom); Nvar <- NCOL(OldChrom)
 
@@ -81,9 +86,9 @@ mutate <- function(MUT_F="mut",
   for(ix in 1:SUBPOP){
     ChromSub <- OldChrom[((ix-1)*Nind+1):(ix*Nind),,drop=FALSE]
     if (IsDiscret == 1) {
-      NewChromSub <- do.call(MUT_F,list(ChromSub,MutOpt,FieldDR,...))
+      NewChromSub <- MutFun(ChromSub,MutOpt,FieldDR,...)
     } else {
-      NewChromSub <- do.call(MUT_F,list(ChromSub,FieldDR,MutOpt,...))
+      NewChromSub <- MutFun(ChromSub,FieldDR,MutOpt,...)
     }
     NewChrom <- rbind(NewChrom,NewChromSub)
   }

@@ -6,7 +6,10 @@
 #' for the actual selection process.
 #'
 #' @param SEL_F character string containing the name of the low-level selection
-#' function, e.g. \code{"sus"} (default) or \code{"rws"}.
+#' function, e.g. \code{"sus"} (default) or \code{"rws"}. The functions of this
+#' package are found even when it is not attached; any other name is looked up
+#' from the environment \code{select} is called from, so user-defined functions
+#' can be given as well.
 #' @param Chrom a matrix containing the individuals (parents) of the current
 #' population. Each row corresponds to one individual.
 #' @param FitnV a vector containing the fitness values of the
@@ -42,6 +45,7 @@ select <- function(SEL_F="sus",
                    SUBPOP=1,
                    ...){
   ## Check parameter consistency
+  SelFun <- get_operator(SEL_F, "SEL_F", parent.frame())
   NindCh <- NROW(Chrom)
   Nvar <- NCOL(Chrom)
   if(!is.vector(FitnV)) stop("FitnV must be a vector")
@@ -60,7 +64,7 @@ select <- function(SEL_F="sus",
   SelCh <- NULL
   for(ix in 1:SUBPOP){
     FitnVSub <- FitnV[((ix-1)*Nind+1):(ix*Nind)]
-    ChrIx <- do.call(SEL_F,list(FitnVSub,NSel,...)) + (ix-1)*Nind
+    ChrIx <- SelFun(FitnVSub,NSel,...) + (ix-1)*Nind
     SelChSub <- Chrom[ChrIx,,drop=FALSE]
     SelCh <- rbind(SelCh,SelChSub)
   }

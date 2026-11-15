@@ -1,5 +1,6 @@
 ﻿# gatbxr
 
+[![CRAN status](https://www.r-pkg.org/badges/version/gatbxr)](https://CRAN.R-project.org/package=gatbxr)
 [![R-CMD-check](https://github.com/drizztxx/gatbxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/drizztxx/gatbxr/actions/workflows/R-CMD-check.yaml)
 
 Genetic Algorithm Toolbox for R, ported from the Sheffield Genetic Algorithm
@@ -11,7 +12,13 @@ between subpopulations for binary, integer and real-valued representations.
 
 ## Installation
 
-Install the development version from GitHub:
+Install the released version from CRAN:
+
+```r
+install.packages("gatbxr")
+```
+
+Or the development version from GitHub:
 
 ```r
 # install.packages("remotes")

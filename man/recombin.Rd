@@ -8,7 +8,10 @@ recombin(REC_F, Chrom, RecOpt = 0.7, SUBPOP = 1, ...)
 }
 \arguments{
 \item{REC_F}{character string containing the name of the recombination or
-crossover function, e.g. \code{"xovsp"} or \code{"recdis"}.}
+crossover function, e.g. \code{"xovsp"} or \code{"recdis"}. The functions of
+this package are found even when it is not attached; any other name is looked
+up from the environment \code{recombin} is called from, so user-defined
+functions can be given as well.}
 
 \item{Chrom}{a matrix containing the chromosomes of the old
 population. Each row corresponds to one individual.}

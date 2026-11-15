@@ -7,7 +7,10 @@
 #' for the actual recombination process.
 #'
 #' @param REC_F character string containing the name of the recombination or
-#' crossover function, e.g. \code{"xovsp"} or \code{"recdis"}.
+#' crossover function, e.g. \code{"xovsp"} or \code{"recdis"}. The functions of
+#' this package are found even when it is not attached; any other name is looked
+#' up from the environment \code{recombin} is called from, so user-defined
+#' functions can be given as well.
 #' @param Chrom a matrix containing the chromosomes of the old
 #' population. Each row corresponds to one individual.
 #' @param RecOpt  an optional value containing the probability of
@@ -42,7 +45,7 @@ recombin <- function(REC_F,
                      ...){
   ## Check parameter consistency
   if (!is.character(REC_F) || length(REC_F) != 1) stop("REC_F must be a string of function name")
-  match.fun(REC_F)
+  RecFun <- get_operator(REC_F, "REC_F", parent.frame())
   if (REC_F == "recmut") stop("recmut cannot be called by this high level function, please use it directly")
   NindCh <- NROW(Chrom)
   Nvar <- NCOL(Chrom)
@@ -59,8 +62,8 @@ recombin <- function(REC_F,
   for(ix in 1:SUBPOP){
     ChromSub <- Chrom[((ix-1)*Nind+1):(ix*Nind),,drop=FALSE]
     if (grepl("xov",REC_F)) {
-      NewChromSub <- do.call(REC_F,list(ChromSub,RecOpt,...))
-      } else NewChromSub <- do.call(REC_F,list(ChromSub,...))
+      NewChromSub <- RecFun(ChromSub,RecOpt,...)
+    } else NewChromSub <- RecFun(ChromSub,...)
     NewChrom <- rbind(NewChrom,NewChromSub)
   }
 
